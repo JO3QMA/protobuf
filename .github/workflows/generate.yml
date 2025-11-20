@@ -3,8 +3,12 @@ name: Generate
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'proto/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'proto/**'
 
 jobs:
   generate:
@@ -19,7 +23,7 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1
       
       - name: Generate Protobuf
-        run: buf generate
+        run: buf generate proto
 
       - name: Check for changes
         id: git-check
