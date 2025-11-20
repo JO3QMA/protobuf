@@ -15,3 +15,7 @@ plugins:
   # Ruby
   - plugin: buf.build/protocolbuffers/ruby
     out: gen/ruby
+  # Documentation
+  - plugin: buf.build/community/pseudomuto-doc
+    out: gen/doc
+    opt: markdown,index.md
