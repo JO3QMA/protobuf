@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.head_ref || github.ref }}
       
       - uses: bufbuild/buf-setup-action@v1
       
@@ -33,4 +33,4 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add gen
           git commit -m "chore: generate protobuf code"
-          git push
+          git push origin HEAD:${{ github.head_ref || github.ref }}
