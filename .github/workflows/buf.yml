@@ -1,0 +1,170 @@
+name: Buf
+
+on:
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '**/*.proto'
+      - '**/VERSION'
+      - 'buf.yaml'
+      - 'buf.lock'
+      - '**/buf.gen.yaml'
+      - '.github/workflows/**'
+      - '.github/actions/**'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Install buf
+        uses: bufbuild/buf-setup-action@v1
+
+      - name: Run buf lint
+        uses: bufbuild/buf-lint-action@v1
+        with:
+          input: proto
+
+      - name: Remove generated files
+        run: |
+          rm -rf api/gen/* || true
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'latest'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 'latest'
+          bundler-cache: true
+
+      - name: Update buf dependencies
+        working-directory: proto
+        run: |
+          # buf.yamlに依存関係が定義されている場合、更新する
+          if [ -f "buf.yaml" ]; then
+            buf mod update || echo "No dependencies to update or buf.yaml doesn't have deps section"
+          fi
+
+      - name: Copy Google API and Protovalidate proto files (if needed)
+        working-directory: proto
+        run: |
+          # buf.yamlに依存関係が定義されていない場合、手動でコピー
+          # Google API proto files
+          if [ ! -d "google/api" ] && buf export buf.build/googleapis/googleapis --output google/api 2>/dev/null; then
+            echo "Google APIs copied"
+          else
+            echo "Google APIs already available via dependencies or not needed"
+          fi
+          # Protovalidate proto files
+          if [ ! -d "buf/validate" ] && buf export buf.build/bufbuild/protovalidate --output buf/validate 2>/dev/null; then
+            echo "Protovalidate copied"
+          else
+            echo "Protovalidate already available via dependencies or not needed"
+          fi
+
+      - name: Generate code with buf
+        run: buf generate
+
+      - name: Update OpenAPI version information
+        run: |
+          if [ -f "proto/hello/v1/VERSION" ]; then
+            VERSION=$(cat proto/hello/v1/VERSION)
+            # OpenAPIファイルがある場合、バージョン情報を更新
+            find gen -name "*.yaml" -o -name "*.yml" -o -name "*.json" | while read file; do
+              if grep -q "version:" "$file" 2>/dev/null || grep -q '"version"' "$file" 2>/dev/null; then
+                sed -i "s/version:.*/version: $VERSION/g" "$file" 2>/dev/null || true
+                sed -i "s/\"version\":.*/\"version\": \"$VERSION\"/g" "$file" 2>/dev/null || true
+              fi
+            done
+          fi
+
+      - name: Create Go module
+        working-directory: gen/go
+        run: |
+          if [ ! -f "go.mod" ]; then
+            go mod init github.com/$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')/gen/go || true
+          fi
+          go mod tidy || true
+
+      - name: Create TypeScript package
+        working-directory: gen/ts
+        run: |
+          if [ ! -f "package.json" ]; then
+            VERSION=$(cat ../../proto/hello/v1/VERSION 2>/dev/null || echo '0.0.1')
+            cat > package.json <<EOF
+          {
+            "name": "@$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '-')/gen-ts",
+            "version": "${VERSION}",
+            "description": "Generated TypeScript code from protobuf",
+            "main": "index.js",
+            "types": "index.d.ts",
+            "scripts": {
+              "test": "echo \"Error: no test specified\" && exit 1"
+            },
+            "keywords": ["protobuf", "typescript"],
+            "author": "",
+            "license": "ISC"
+          }
+          EOF
+          fi
+          npm install || true
+
+      - name: Create Ruby package
+        working-directory: gen/ruby
+        run: |
+          if [ ! -f "*.gemspec" ]; then
+            GEM_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '-' | sed 's/-gen-ruby$//')-gen-ruby
+            VERSION=$(cat ../../proto/hello/v1/VERSION 2>/dev/null || echo '0.0.1')
+            cat > "${GEM_NAME}.gemspec" <<EOF
+          # frozen_string_literal: true
+
+          Gem::Specification.new do |spec|
+            spec.name          = "${GEM_NAME}"
+            spec.version       = "${VERSION}"
+            spec.authors       = [""]
+            spec.email         = [""]
+
+            spec.summary       = "Generated Ruby code from protobuf"
+            spec.description   = "Generated Ruby code from protobuf"
+            spec.homepage      = "https://github.com/${{ github.repository }}"
+            spec.license       = "MIT"
+
+            spec.files         = Dir["lib/**/*"]
+            spec.require_paths = ["lib"]
+          end
+          EOF
+          fi
+
+      - name: Commit generated code
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: regenerate code from protobuf definitions"
+            git push || echo "Failed to push, may need manual merge"
+          fi
+
+      - name: Check breaking changes
+        uses: bufbuild/buf-breaking-action@v1
+        with:
+          input: proto
+          against: ".git#branch=origin/master"
