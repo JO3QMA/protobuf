@@ -66,16 +66,38 @@ jobs:
         run: |
           # buf.yamlに依存関係が定義されていない場合、手動でコピー
           # Google API proto files
-          if [ ! -d "google/api" ] && buf export buf.build/googleapis/googleapis --output google/api 2>/dev/null; then
-            echo "Google APIs copied"
+          if [ ! -d "google/api" ]; then
+            mkdir -p /tmp/googleapis-export
+            if buf export buf.build/googleapis/googleapis --output /tmp/googleapis-export 2>/dev/null; then
+              # エクスポートされたファイルを正しいパス構造に移動
+              if [ -d "/tmp/googleapis-export/google/api" ]; then
+                mkdir -p google
+                cp -r /tmp/googleapis-export/google/api google/
+                echo "Google APIs copied to proto/google/api"
+              fi
+              rm -rf /tmp/googleapis-export
+            else
+              echo "Google APIs not found or already available via dependencies"
+            fi
           else
-            echo "Google APIs already available via dependencies or not needed"
+            echo "Google APIs already exist"
           fi
           # Protovalidate proto files
-          if [ ! -d "buf/validate" ] && buf export buf.build/bufbuild/protovalidate --output buf/validate 2>/dev/null; then
-            echo "Protovalidate copied"
+          if [ ! -d "buf/validate" ]; then
+            mkdir -p /tmp/protovalidate-export
+            if buf export buf.build/bufbuild/protovalidate --output /tmp/protovalidate-export 2>/dev/null; then
+              # エクスポートされたファイルを正しいパス構造に移動
+              if [ -d "/tmp/protovalidate-export/buf/validate" ]; then
+                mkdir -p buf
+                cp -r /tmp/protovalidate-export/buf/validate buf/
+                echo "Protovalidate copied to proto/buf/validate"
+              fi
+              rm -rf /tmp/protovalidate-export
+            else
+              echo "Protovalidate not found or already available via dependencies"
+            fi
           else
-            echo "Protovalidate already available via dependencies or not needed"
+            echo "Protovalidate already exists"
           fi
 
       - name: Generate code with buf
