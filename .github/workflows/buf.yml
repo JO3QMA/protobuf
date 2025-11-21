@@ -38,9 +38,9 @@ jobs:
           rm -rf api/gen/* || true
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
-          go-version: 'latest'
+          go-version: '1.25.4'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
