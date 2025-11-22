@@ -35,7 +35,7 @@ jobs:
 
       - name: Remove generated files
         run: |
-          rm -rf api/gen/* || true
+          rm -rf gen/* || true
 
       - name: Setup Go
         uses: actions/setup-go@v6
