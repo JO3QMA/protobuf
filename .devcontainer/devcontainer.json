@@ -1,0 +1,46 @@
+{
+  "name": "Protobuf Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/ruby:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bufbuild.buf",
+        "golang.go",
+        "dbaeumer.vscode-eslint",
+        "rebornix.ruby"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "golang.go",
+        "[go]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "golang.go"
+        },
+        "[typescript]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[ruby]": {
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  },
+  "postCreateCommand": "buf mod update && (test -d gen/ts && npm install --prefix gen/ts || true)",
+  "remoteUser": "vscode"
+}
+
