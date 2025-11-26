@@ -69,7 +69,7 @@ jobs:
           if [ -f "proto/hello/v1/VERSION" ]; then
             VERSION=$(cat proto/hello/v1/VERSION)
             # OpenAPIファイルがある場合、バージョン情報を更新
-            find gen -name "*.yaml" -o -name "*.yml" -o -name "*.json" | while read file; do
+            find gen \( -name "*.yaml" -o -name "*.yml" -o -name "*.json" \) | while read file; do
               if grep -q "version:" "$file" 2>/dev/null || grep -q '"version"' "$file" 2>/dev/null; then
                 sed -i "s/version:.*/version: $VERSION/g" "$file" 2>/dev/null || true
                 sed -i "s/\"version\":.*/\"version\": \"$VERSION\"/g" "$file" 2>/dev/null || true
@@ -90,20 +90,20 @@ jobs:
         run: |
           if [ ! -f "package.json" ]; then
             VERSION=$(cat ../../proto/hello/v1/VERSION 2>/dev/null || echo '0.0.1')
-            cat > package.json <<EOF
-          {
-            "name": "@$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '-')/gen-ts",
-            "version": "${VERSION}",
-            "description": "Generated TypeScript code from protobuf",
-            "main": "index.js",
-            "types": "index.d.ts",
-            "scripts": {
-              "test": "echo \"Error: no test specified\" && exit 1"
-            },
-            "keywords": ["protobuf", "typescript"],
-            "author": "",
-            "license": "ISC"
-          }
+            cat <<EOF | sed 's/^  //' > package.json
+            {
+              "name": "@$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '-')/gen-ts",
+              "version": "${VERSION}",
+              "description": "Generated TypeScript code from protobuf",
+              "main": "index.js",
+              "types": "index.d.ts",
+              "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1"
+              },
+              "keywords": ["protobuf", "typescript"],
+              "author": "",
+              "license": "ISC"
+            }
           EOF
           fi
           npm install || true
@@ -111,26 +111,26 @@ jobs:
       - name: Create Ruby package
         working-directory: gen/ruby
         run: |
-          if [ ! -f "*.gemspec" ]; then
+          if [ -z "$(find . -maxdepth 1 -name '*.gemspec' -print -quit)" ]; then
             GEM_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' | tr '/' '-' | sed 's/-gen-ruby$//')-gen-ruby
             VERSION=$(cat ../../proto/hello/v1/VERSION 2>/dev/null || echo '0.0.1')
-            cat > "${GEM_NAME}.gemspec" <<EOF
-          # frozen_string_literal: true
+            cat <<EOF | sed 's/^  //' > "${GEM_NAME}.gemspec"
+            # frozen_string_literal: true
 
-          Gem::Specification.new do |spec|
-            spec.name          = "${GEM_NAME}"
-            spec.version       = "${VERSION}"
-            spec.authors       = [""]
-            spec.email         = [""]
+            Gem::Specification.new do |spec|
+              spec.name          = "${GEM_NAME}"
+              spec.version       = "${VERSION}"
+              spec.authors       = [""]
+              spec.email         = [""]
 
-            spec.summary       = "Generated Ruby code from protobuf"
-            spec.description   = "Generated Ruby code from protobuf"
-            spec.homepage      = "https://github.com/${{ github.repository }}"
-            spec.license       = "MIT"
+              spec.summary       = "Generated Ruby code from protobuf"
+              spec.description   = "Generated Ruby code from protobuf"
+              spec.homepage      = "https://github.com/${{ github.repository }}"
+              spec.license       = "MIT"
 
-            spec.files         = Dir["lib/**/*"]
-            spec.require_paths = ["lib"]
-          end
+              spec.files         = Dir["lib/**/*"]
+              spec.require_paths = ["lib"]
+            end
           EOF
           fi
 

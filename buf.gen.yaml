@@ -1,21 +1,21 @@
 version: v2
 plugins:
   # Go
-  - plugin: buf.build/protocolbuffers/go
+  - remote: buf.build/protocolbuffers/go
     out: gen/go
     opt: paths=source_relative
-  - plugin: buf.build/connectrpc/go
+  - remote: buf.build/connectrpc/go
     out: gen/go
     opt: paths=source_relative
   # TypeScript
-  - plugin: buf.build/bufbuild/es
+  - remote: buf.build/bufbuild/es
     out: gen/ts
-  - plugin: buf.build/connectrpc/es
+  - remote: buf.build/connectrpc/es
     out: gen/ts
   # Ruby
-  - plugin: buf.build/protocolbuffers/ruby
+  - remote: buf.build/protocolbuffers/ruby
     out: gen/ruby
   # Documentation
-  - plugin: buf.build/community/pseudomuto-doc
+  - remote: buf.build/community/pseudomuto-doc
     out: gen/doc
     opt: markdown,index.md
