@@ -14,5 +14,5 @@ Gem::Specification.new do |spec|
   spec.files         = Dir["lib/**/*"]
   spec.require_paths = ["lib"]
   spec.add_dependency "grpc", "~> 1.50"
-  spec.add_dependency "google-protobuf", "~> 3.25"
+  spec.add_dependency "google-protobuf", ">= 3.25", "< 5.0"
 end
