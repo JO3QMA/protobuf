@@ -8,6 +8,8 @@
     - [GetUserResponse](#hello-v1-GetUserResponse)
     - [HelloRequest](#hello-v1-HelloRequest)
     - [HelloResponse](#hello-v1-HelloResponse)
+    - [SayHelloRequest](#hello-v1-SayHelloRequest)
+    - [SayHelloResponse](#hello-v1-SayHelloResponse)
   
     - [UserService](#hello-v1-UserService)
   
@@ -82,6 +84,36 @@
 
 
 
+
+<a name="hello-v1-SayHelloRequest"></a>
+
+### SayHelloRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="hello-v1-SayHelloResponse"></a>
+
+### SayHelloResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| message | [string](#string) |  |  |
+
+
+
+
+
  
 
  
@@ -97,6 +129,7 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetUser | [GetUserRequest](#hello-v1-GetUserRequest) | [GetUserResponse](#hello-v1-GetUserResponse) |  |
+| SayHello | [SayHelloRequest](#hello-v1-SayHelloRequest) | [SayHelloResponse](#hello-v1-SayHelloResponse) |  |
 
  
 

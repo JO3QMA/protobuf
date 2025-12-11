@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetUserRequest, GetUserResponse } from "./hello_pb.js";
+import { GetUserRequest, GetUserResponse, SayHelloRequest, SayHelloResponse } from "./hello_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,15 @@ export const UserService = {
       name: "GetUser",
       I: GetUserRequest,
       O: GetUserResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc hello.v1.UserService.SayHello
+     */
+    sayHello: {
+      name: "SayHello",
+      I: SayHelloRequest,
+      O: SayHelloResponse,
       kind: MethodKind.Unary,
     },
   }
