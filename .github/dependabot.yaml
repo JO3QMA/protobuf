@@ -1,0 +1,65 @@
+version: 2
+updates:
+  # Go モジュールの依存関係を監視
+  - package-ecosystem: "gomod"
+    directory: "/gen/go"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "go"
+    commit-message:
+      prefix: "chore(go)"
+      include: "scope"
+
+  # npm パッケージの依存関係を監視
+  - package-ecosystem: "npm"
+    directory: "/gen/ts"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "typescript"
+    commit-message:
+      prefix: "chore(ts)"
+      include: "scope"
+
+  # Ruby gems の依存関係を監視
+  # 注意: gemspecファイルは直接サポートされていないため、
+  # Gemfileが存在する場合はそちらを監視します
+  # 現在はgemspecのみのため、この設定は将来Gemfileが追加された場合に備えて残しておきます
+  - package-ecosystem: "bundler"
+    directory: "/gen/ruby"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "ruby"
+    commit-message:
+      prefix: "chore(ruby)"
+      include: "scope"
+    # Gemfileが存在しない場合は、この設定は無視されます
+
+  # GitHub Actions の依存関係を監視
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(ci)"
+      include: "scope"
