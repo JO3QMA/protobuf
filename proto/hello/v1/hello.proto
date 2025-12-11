@@ -25,6 +25,16 @@ message GetUserResponse {
   string name = 2;
 }
 
+message HelloRequest {
+  option deprecated = true;
+  string name = 1 [ (google.api.field_behavior) = INPUT_ONLY ];
+}
+
+message HelloResponse {
+  option deprecated = true;
+  string message = 1;
+}
+
 message SayHelloRequest {
   string name = 1 [ (google.api.field_behavior) = INPUT_ONLY ];
 }
