@@ -86,6 +86,14 @@
           "type": "string"
         }
       }
+    },
+    "v1SayHelloResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
     }
   }
 }

@@ -4,12 +4,13 @@
 
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_api_annotations } from "../../google/api/annotations_pb";
+import { file_google_api_field_behavior } from "../../google/api/field_behavior_pb";
 
 /**
  * Describes the file hello/v1/hello.proto.
  */
 export const file_hello_v1_hello = /*@__PURE__*/
-  fileDesc("ChRoZWxsby92MS9oZWxsby5wcm90bxIIaGVsbG8udjEiHAoOR2V0VXNlclJlcXVlc3QSCgoCaWQYASABKAkiKwoPR2V0VXNlclJlc3BvbnNlEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkiHAoMSGVsbG9SZXF1ZXN0EgwKBG5hbWUYASABKAkiIAoNSGVsbG9SZXNwb25zZRIPCgdtZXNzYWdlGAEgASgJMmUKC1VzZXJTZXJ2aWNlElYKB0dldFVzZXISGC5oZWxsby52MS5HZXRVc2VyUmVxdWVzdBoZLmhlbGxvLnYxLkdldFVzZXJSZXNwb25zZSIWgtPkkwIQEg4vdjEvdXNlcnMve2lkfUI0WjJnaXRodWIuY29tL2pvM3FtYS9wcm90b2J1Zi9nZW4vZ28vaGVsbG8vdjE7aGVsbG92MWIGcHJvdG8z", [file_google_api_annotations]);
+  fileDesc("ChRoZWxsby92MS9oZWxsby5wcm90bxIIaGVsbG8udjEiHAoOR2V0VXNlclJlcXVlc3QSCgoCaWQYASABKAkiKwoPR2V0VXNlclJlc3BvbnNlEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkiJQoMSGVsbG9SZXF1ZXN0EhEKBG5hbWUYASABKAlCA+BBBDoCGAEiJAoNSGVsbG9SZXNwb25zZRIPCgdtZXNzYWdlGAEgASgJOgIYASIkCg9TYXlIZWxsb1JlcXVlc3QSEQoEbmFtZRgBIAEoCUID4EEEIiMKEFNheUhlbGxvUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCTKqAQoLVXNlclNlcnZpY2USVgoHR2V0VXNlchIYLmhlbGxvLnYxLkdldFVzZXJSZXF1ZXN0GhkuaGVsbG8udjEuR2V0VXNlclJlc3BvbnNlIhaC0+STAhASDi92MS91c2Vycy97aWR9EkMKCFNheUhlbGxvEhkuaGVsbG8udjEuU2F5SGVsbG9SZXF1ZXN0GhouaGVsbG8udjEuU2F5SGVsbG9SZXNwb25zZSIAQjRaMmdpdGh1Yi5jb20vam8zcW1hL3Byb3RvYnVmL2dlbi9nby9oZWxsby92MTtoZWxsb3YxYgZwcm90bzM", [file_google_api_annotations, file_google_api_field_behavior]);
 
 /**
  * Describes the message hello.v1.GetUserRequest.
@@ -28,6 +29,7 @@ export const GetUserResponseSchema = /*@__PURE__*/
 /**
  * Describes the message hello.v1.HelloRequest.
  * Use `create(HelloRequestSchema)` to create a new message.
+ * @deprecated
  */
 export const HelloRequestSchema = /*@__PURE__*/
   messageDesc(file_hello_v1_hello, 2);
@@ -35,9 +37,24 @@ export const HelloRequestSchema = /*@__PURE__*/
 /**
  * Describes the message hello.v1.HelloResponse.
  * Use `create(HelloResponseSchema)` to create a new message.
+ * @deprecated
  */
 export const HelloResponseSchema = /*@__PURE__*/
   messageDesc(file_hello_v1_hello, 3);
+
+/**
+ * Describes the message hello.v1.SayHelloRequest.
+ * Use `create(SayHelloRequestSchema)` to create a new message.
+ */
+export const SayHelloRequestSchema = /*@__PURE__*/
+  messageDesc(file_hello_v1_hello, 4);
+
+/**
+ * Describes the message hello.v1.SayHelloResponse.
+ * Use `create(SayHelloResponseSchema)` to create a new message.
+ */
+export const SayHelloResponseSchema = /*@__PURE__*/
+  messageDesc(file_hello_v1_hello, 5);
 
 /**
  * @generated from service hello.v1.UserService

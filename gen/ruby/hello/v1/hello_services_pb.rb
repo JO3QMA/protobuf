@@ -16,6 +16,7 @@ module Hello
         self.service_name = 'hello.v1.UserService'
 
         rpc :GetUser, ::Hello::V1::GetUserRequest, ::Hello::V1::GetUserResponse
+        rpc :SayHello, ::Hello::V1::SayHelloRequest, ::Hello::V1::SayHelloResponse
       end
 
       Stub = Service.rpc_stub_class

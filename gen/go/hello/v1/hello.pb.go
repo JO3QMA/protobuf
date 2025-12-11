@@ -118,6 +118,7 @@ func (x *GetUserResponse) GetName() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in hello/v1/hello.proto.
 type HelloRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -162,6 +163,7 @@ func (x *HelloRequest) GetName() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in hello/v1/hello.proto.
 type HelloResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
@@ -206,22 +208,115 @@ func (x *HelloResponse) GetMessage() string {
 	return ""
 }
 
+type SayHelloRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SayHelloRequest) Reset() {
+	*x = SayHelloRequest{}
+	mi := &file_hello_v1_hello_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SayHelloRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SayHelloRequest) ProtoMessage() {}
+
+func (x *SayHelloRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SayHelloRequest.ProtoReflect.Descriptor instead.
+func (*SayHelloRequest) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *SayHelloRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type SayHelloResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SayHelloResponse) Reset() {
+	*x = SayHelloResponse{}
+	mi := &file_hello_v1_hello_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SayHelloResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SayHelloResponse) ProtoMessage() {}
+
+func (x *SayHelloResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SayHelloResponse.ProtoReflect.Descriptor instead.
+func (*SayHelloResponse) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *SayHelloResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_hello_v1_hello_proto protoreflect.FileDescriptor
 
 const file_hello_v1_hello_proto_rawDesc = "" +
 	"\n" +
-	"\x14hello/v1/hello.proto\x12\bhello.v1\x1a\x1cgoogle/api/annotations.proto\" \n" +
+	"\x14hello/v1/hello.proto\x12\bhello.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"5\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\"\n" +
-	"\fHelloRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\")\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"+\n" +
+	"\fHelloRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x04R\x04name:\x02\x18\x01\"-\n" +
 	"\rHelloResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2e\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage:\x02\x18\x01\"*\n" +
+	"\x0fSayHelloRequest\x12\x17\n" +
+	"\x04name\x18\x01 \x01(\tB\x03\xe0A\x04R\x04name\",\n" +
+	"\x10SayHelloResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xaa\x01\n" +
 	"\vUserService\x12V\n" +
-	"\aGetUser\x12\x18.hello.v1.GetUserRequest\x1a\x19.hello.v1.GetUserResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/users/{id}B4Z2github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1b\x06proto3"
+	"\aGetUser\x12\x18.hello.v1.GetUserRequest\x1a\x19.hello.v1.GetUserResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/users/{id}\x12C\n" +
+	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"\x00B4Z2github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1b\x06proto3"
 
 var (
 	file_hello_v1_hello_proto_rawDescOnce sync.Once
@@ -235,18 +330,22 @@ func file_hello_v1_hello_proto_rawDescGZIP() []byte {
 	return file_hello_v1_hello_proto_rawDescData
 }
 
-var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_hello_v1_hello_proto_goTypes = []any{
-	(*GetUserRequest)(nil),  // 0: hello.v1.GetUserRequest
-	(*GetUserResponse)(nil), // 1: hello.v1.GetUserResponse
-	(*HelloRequest)(nil),    // 2: hello.v1.HelloRequest
-	(*HelloResponse)(nil),   // 3: hello.v1.HelloResponse
+	(*GetUserRequest)(nil),   // 0: hello.v1.GetUserRequest
+	(*GetUserResponse)(nil),  // 1: hello.v1.GetUserResponse
+	(*HelloRequest)(nil),     // 2: hello.v1.HelloRequest
+	(*HelloResponse)(nil),    // 3: hello.v1.HelloResponse
+	(*SayHelloRequest)(nil),  // 4: hello.v1.SayHelloRequest
+	(*SayHelloResponse)(nil), // 5: hello.v1.SayHelloResponse
 }
 var file_hello_v1_hello_proto_depIdxs = []int32{
 	0, // 0: hello.v1.UserService.GetUser:input_type -> hello.v1.GetUserRequest
-	1, // 1: hello.v1.UserService.GetUser:output_type -> hello.v1.GetUserResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	4, // 1: hello.v1.UserService.SayHello:input_type -> hello.v1.SayHelloRequest
+	1, // 2: hello.v1.UserService.GetUser:output_type -> hello.v1.GetUserResponse
+	5, // 3: hello.v1.UserService.SayHello:output_type -> hello.v1.SayHelloResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -263,7 +362,7 @@ func file_hello_v1_hello_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_hello_v1_hello_proto_rawDesc), len(file_hello_v1_hello_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

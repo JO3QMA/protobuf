@@ -49,6 +49,7 @@ export declare const GetUserResponseSchema: GenMessage<GetUserResponse>;
 
 /**
  * @generated from message hello.v1.HelloRequest
+ * @deprecated
  */
 export declare type HelloRequest = Message<"hello.v1.HelloRequest"> & {
   /**
@@ -60,11 +61,13 @@ export declare type HelloRequest = Message<"hello.v1.HelloRequest"> & {
 /**
  * Describes the message hello.v1.HelloRequest.
  * Use `create(HelloRequestSchema)` to create a new message.
+ * @deprecated
  */
 export declare const HelloRequestSchema: GenMessage<HelloRequest>;
 
 /**
  * @generated from message hello.v1.HelloResponse
+ * @deprecated
  */
 export declare type HelloResponse = Message<"hello.v1.HelloResponse"> & {
   /**
@@ -76,8 +79,41 @@ export declare type HelloResponse = Message<"hello.v1.HelloResponse"> & {
 /**
  * Describes the message hello.v1.HelloResponse.
  * Use `create(HelloResponseSchema)` to create a new message.
+ * @deprecated
  */
 export declare const HelloResponseSchema: GenMessage<HelloResponse>;
+
+/**
+ * @generated from message hello.v1.SayHelloRequest
+ */
+export declare type SayHelloRequest = Message<"hello.v1.SayHelloRequest"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message hello.v1.SayHelloRequest.
+ * Use `create(SayHelloRequestSchema)` to create a new message.
+ */
+export declare const SayHelloRequestSchema: GenMessage<SayHelloRequest>;
+
+/**
+ * @generated from message hello.v1.SayHelloResponse
+ */
+export declare type SayHelloResponse = Message<"hello.v1.SayHelloResponse"> & {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message: string;
+};
+
+/**
+ * Describes the message hello.v1.SayHelloResponse.
+ * Use `create(SayHelloResponseSchema)` to create a new message.
+ */
+export declare const SayHelloResponseSchema: GenMessage<SayHelloResponse>;
 
 /**
  * @generated from service hello.v1.UserService
@@ -90,6 +126,14 @@ export declare const UserService: GenService<{
     methodKind: "unary";
     input: typeof GetUserRequestSchema;
     output: typeof GetUserResponseSchema;
+  },
+  /**
+   * @generated from rpc hello.v1.UserService.SayHello
+   */
+  sayHello: {
+    methodKind: "unary";
+    input: typeof SayHelloRequestSchema;
+    output: typeof SayHelloResponseSchema;
   },
 }>;
 
