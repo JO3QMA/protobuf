@@ -12,6 +12,7 @@ service UserService {
       get: "/v1/users/{id}"
     };
   }
+  rpc SayHello (HelloRequest) returns (HelloResponse) {}
 }
 
 message GetUserRequest {
@@ -24,7 +25,7 @@ message GetUserResponse {
 }
 
 message HelloRequest {
-  string name = 1;
+  string name = 1 [ (google.api.field_behavior) = INPUT_ONLY ];
 }
 
 message HelloResponse {
