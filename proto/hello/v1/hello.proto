@@ -4,6 +4,7 @@ package hello.v1;
 option go_package = "github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1";
 
 import "google/api/annotations.proto"; // OpenAPI生成に必須
+import "google/api/field_behavior.proto"; // フィールドの必須性を指定するために使用
 
 service UserService {
   rpc GetUser (GetUserRequest) returns (GetUserResponse) {
