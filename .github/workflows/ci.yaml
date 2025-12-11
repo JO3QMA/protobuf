@@ -2,39 +2,41 @@ name: Protobuf CI/CD
 
 on:
   push:
-    branches: [ "master", "main" ] # masterブランチへのpushで動作
+    branches: [ "master" ] # あなたの環境に合わせて master にしています
     paths:
       - 'proto/**'
       - 'buf.*'
-  pull_request:
-    branches: [ "master", "main" ]
+  workflow_dispatch:
 
 jobs:
-  # 1. チェックジョブ (PR時 & Push時)
+  # 1. チェックジョブ
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Buf Lint
         run: buf lint
         
+      # 破壊的変更の検知 (初回は比較対象がないため失敗する可能性がありますが、2回目以降機能します)
       - name: Buf Breaking Change Detection
-        # mainブランチと比較して破壊的変更がないかチェック
         uses: bufbuild/buf-breaking-action@v1
         with:
           against: "https://github.com/${{ github.repository }}.git#branch=master"
 
-  # 2. 生成＆コミットジョブ (master/main Push時のみ)
+  # 2. 生成＆コミットジョブ
   generate:
     needs: lint
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     permissions:
-      contents: write # リポジトリへの書き込み権限を付与
+      contents: write # リポジトリへの書き込み権限
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       
       - uses: bufbuild/buf-setup-action@v1
         with:
@@ -42,8 +44,9 @@ jobs:
 
       - name: Generate Code
         run: |
-          # 以前の生成物をクリア（ゴミファイルが残らないように）
-          rm -rf gen/go/proto gen/ts/proto gen/ruby/proto gen/openapi
+          # クリーンアップ (古いファイルが残らないように)
+          rm -rf gen/go/gen gen/ts/gen gen/ruby/gen gen/openapi gen/doc
+          
           # 生成実行
           buf generate
 
