@@ -118,6 +118,94 @@ func (x *GetUserResponse) GetName() string {
 	return ""
 }
 
+type HelloRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HelloRequest) Reset() {
+	*x = HelloRequest{}
+	mi := &file_hello_v1_hello_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HelloRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloRequest) ProtoMessage() {}
+
+func (x *HelloRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloRequest.ProtoReflect.Descriptor instead.
+func (*HelloRequest) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *HelloRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type HelloResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HelloResponse) Reset() {
+	*x = HelloResponse{}
+	mi := &file_hello_v1_hello_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HelloResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloResponse) ProtoMessage() {}
+
+func (x *HelloResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloResponse.ProtoReflect.Descriptor instead.
+func (*HelloResponse) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *HelloResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_hello_v1_hello_proto protoreflect.FileDescriptor
 
 const file_hello_v1_hello_proto_rawDesc = "" +
@@ -127,7 +215,11 @@ const file_hello_v1_hello_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"5\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name2e\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\"\n" +
+	"\fHelloRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\")\n" +
+	"\rHelloResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2e\n" +
 	"\vUserService\x12V\n" +
 	"\aGetUser\x12\x18.hello.v1.GetUserRequest\x1a\x19.hello.v1.GetUserResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/users/{id}B4Z2github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1b\x06proto3"
 
@@ -143,10 +235,12 @@ func file_hello_v1_hello_proto_rawDescGZIP() []byte {
 	return file_hello_v1_hello_proto_rawDescData
 }
 
-var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_hello_v1_hello_proto_goTypes = []any{
 	(*GetUserRequest)(nil),  // 0: hello.v1.GetUserRequest
 	(*GetUserResponse)(nil), // 1: hello.v1.GetUserResponse
+	(*HelloRequest)(nil),    // 2: hello.v1.HelloRequest
+	(*HelloResponse)(nil),   // 3: hello.v1.HelloResponse
 }
 var file_hello_v1_hello_proto_depIdxs = []int32{
 	0, // 0: hello.v1.UserService.GetUser:input_type -> hello.v1.GetUserRequest
@@ -169,7 +263,7 @@ func file_hello_v1_hello_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_hello_v1_hello_proto_rawDesc), len(file_hello_v1_hello_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

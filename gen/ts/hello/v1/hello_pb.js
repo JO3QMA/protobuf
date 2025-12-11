@@ -9,7 +9,7 @@ import { file_google_api_annotations } from "../../google/api/annotations_pb";
  * Describes the file hello/v1/hello.proto.
  */
 export const file_hello_v1_hello = /*@__PURE__*/
-  fileDesc("ChRoZWxsby92MS9oZWxsby5wcm90bxIIaGVsbG8udjEiHAoOR2V0VXNlclJlcXVlc3QSCgoCaWQYASABKAkiKwoPR2V0VXNlclJlc3BvbnNlEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkyZQoLVXNlclNlcnZpY2USVgoHR2V0VXNlchIYLmhlbGxvLnYxLkdldFVzZXJSZXF1ZXN0GhkuaGVsbG8udjEuR2V0VXNlclJlc3BvbnNlIhaC0+STAhASDi92MS91c2Vycy97aWR9QjRaMmdpdGh1Yi5jb20vam8zcW1hL3Byb3RvYnVmL2dlbi9nby9oZWxsby92MTtoZWxsb3YxYgZwcm90bzM", [file_google_api_annotations]);
+  fileDesc("ChRoZWxsby92MS9oZWxsby5wcm90bxIIaGVsbG8udjEiHAoOR2V0VXNlclJlcXVlc3QSCgoCaWQYASABKAkiKwoPR2V0VXNlclJlc3BvbnNlEgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkiHAoMSGVsbG9SZXF1ZXN0EgwKBG5hbWUYASABKAkiIAoNSGVsbG9SZXNwb25zZRIPCgdtZXNzYWdlGAEgASgJMmUKC1VzZXJTZXJ2aWNlElYKB0dldFVzZXISGC5oZWxsby52MS5HZXRVc2VyUmVxdWVzdBoZLmhlbGxvLnYxLkdldFVzZXJSZXNwb25zZSIWgtPkkwIQEg4vdjEvdXNlcnMve2lkfUI0WjJnaXRodWIuY29tL2pvM3FtYS9wcm90b2J1Zi9nZW4vZ28vaGVsbG8vdjE7aGVsbG92MWIGcHJvdG8z", [file_google_api_annotations]);
 
 /**
  * Describes the message hello.v1.GetUserRequest.
@@ -24,6 +24,20 @@ export const GetUserRequestSchema = /*@__PURE__*/
  */
 export const GetUserResponseSchema = /*@__PURE__*/
   messageDesc(file_hello_v1_hello, 1);
+
+/**
+ * Describes the message hello.v1.HelloRequest.
+ * Use `create(HelloRequestSchema)` to create a new message.
+ */
+export const HelloRequestSchema = /*@__PURE__*/
+  messageDesc(file_hello_v1_hello, 2);
+
+/**
+ * Describes the message hello.v1.HelloResponse.
+ * Use `create(HelloResponseSchema)` to create a new message.
+ */
+export const HelloResponseSchema = /*@__PURE__*/
+  messageDesc(file_hello_v1_hello, 3);
 
 /**
  * @generated from service hello.v1.UserService

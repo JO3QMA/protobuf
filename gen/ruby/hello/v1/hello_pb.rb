@@ -7,7 +7,7 @@ require 'google/protobuf'
 require 'google/api/annotations_pb'
 
 
-descriptor_data = "\n\x14hello/v1/hello.proto\x12\x08hello.v1\x1a\x1cgoogle/api/annotations.proto\" \n\x0eGetUserRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"5\n\x0fGetUserResponse\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name2e\n\x0bUserService\x12V\n\x07GetUser\x12\x18.hello.v1.GetUserRequest\x1a\x19.hello.v1.GetUserResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/users/{id}B4Z2github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1b\x06proto3"
+descriptor_data = "\n\x14hello/v1/hello.proto\x12\x08hello.v1\x1a\x1cgoogle/api/annotations.proto\" \n\x0eGetUserRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"5\n\x0fGetUserResponse\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\"\"\n\x0cHelloRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\")\n\rHelloResponse\x12\x18\n\x07message\x18\x01 \x01(\tR\x07message2e\n\x0bUserService\x12V\n\x07GetUser\x12\x18.hello.v1.GetUserRequest\x1a\x19.hello.v1.GetUserResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/users/{id}B4Z2github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1b\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
@@ -16,5 +16,7 @@ module Hello
   module V1
     GetUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("hello.v1.GetUserRequest").msgclass
     GetUserResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("hello.v1.GetUserResponse").msgclass
+    HelloRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("hello.v1.HelloRequest").msgclass
+    HelloResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("hello.v1.HelloResponse").msgclass
   end
 end
