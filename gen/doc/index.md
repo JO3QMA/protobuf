@@ -6,6 +6,8 @@
 - [hello/v1/hello.proto](#hello_v1_hello-proto)
     - [GetUserRequest](#hello-v1-GetUserRequest)
     - [GetUserResponse](#hello-v1-GetUserResponse)
+    - [HelloRequest](#hello-v1-HelloRequest)
+    - [HelloResponse](#hello-v1-HelloResponse)
   
     - [UserService](#hello-v1-UserService)
   
@@ -45,6 +47,36 @@
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="hello-v1-HelloRequest"></a>
+
+### HelloRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="hello-v1-HelloResponse"></a>
+
+### HelloResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| message | [string](#string) |  |  |
 
 
 

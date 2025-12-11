@@ -6,6 +6,11 @@ on:
     paths:
       - 'proto/**'
       - 'buf.*'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - 'proto/**'
+      - 'buf.*'
   workflow_dispatch:
 
 jobs:

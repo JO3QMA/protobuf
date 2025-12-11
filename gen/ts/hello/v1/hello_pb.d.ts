@@ -48,6 +48,38 @@ export declare type GetUserResponse = Message<"hello.v1.GetUserResponse"> & {
 export declare const GetUserResponseSchema: GenMessage<GetUserResponse>;
 
 /**
+ * @generated from message hello.v1.HelloRequest
+ */
+export declare type HelloRequest = Message<"hello.v1.HelloRequest"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message hello.v1.HelloRequest.
+ * Use `create(HelloRequestSchema)` to create a new message.
+ */
+export declare const HelloRequestSchema: GenMessage<HelloRequest>;
+
+/**
+ * @generated from message hello.v1.HelloResponse
+ */
+export declare type HelloResponse = Message<"hello.v1.HelloResponse"> & {
+  /**
+   * @generated from field: string message = 1;
+   */
+  message: string;
+};
+
+/**
+ * Describes the message hello.v1.HelloResponse.
+ * Use `create(HelloResponseSchema)` to create a new message.
+ */
+export declare const HelloResponseSchema: GenMessage<HelloResponse>;
+
+/**
  * @generated from service hello.v1.UserService
  */
 export declare const UserService: GenService<{
