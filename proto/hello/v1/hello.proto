@@ -1,17 +1,24 @@
 syntax = "proto3";
-
 package hello.v1;
 
 option go_package = "github.com/jo3qma/protobuf/gen/go/hello/v1;hellov1";
 
-service HelloService {
-  rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
+import "google/api/annotations.proto"; // OpenAPI生成に必須
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {
+    // REST (OpenAPI) 用のマッピング定義
+    option (google.api.http) = {
+      get: "/v1/users/{id}"
+    };
+  }
 }
 
-message SayHelloRequest {
-  string name = 1;
+message GetUserRequest {
+  string id = 1;
 }
 
-message SayHelloResponse {
-  string message = 1;
+message GetUserResponse {
+  string id = 1;
+  string name = 2;
 }

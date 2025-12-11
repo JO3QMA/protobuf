@@ -1,0 +1,13 @@
+version: v2
+modules:
+  - path: proto
+    name: buf.build/my-user/my-repo # 任意の名前（ローカル生成だけなら影響なし）
+deps:
+  - buf.build/googleapis/googleapis # google.api.http (OpenAPI用)
+  - buf.build/gnostic/gnostic       # OpenAPI生成ツール用の依存
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE

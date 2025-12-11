@@ -3,52 +3,53 @@
 
 ## Table of Contents
 
-- [proto/hello/v1/hello.proto](#proto_hello_v1_hello-proto)
-    - [SayHelloRequest](#hello-v1-SayHelloRequest)
-    - [SayHelloResponse](#hello-v1-SayHelloResponse)
+- [hello/v1/hello.proto](#hello_v1_hello-proto)
+    - [GetUserRequest](#hello-v1-GetUserRequest)
+    - [GetUserResponse](#hello-v1-GetUserResponse)
   
-    - [HelloService](#hello-v1-HelloService)
+    - [UserService](#hello-v1-UserService)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="proto_hello_v1_hello-proto"></a>
+<a name="hello_v1_hello-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## proto/hello/v1/hello.proto
+## hello/v1/hello.proto
 
 
 
-<a name="hello-v1-SayHelloRequest"></a>
+<a name="hello-v1-GetUserRequest"></a>
 
-### SayHelloRequest
+### GetUserRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="hello-v1-GetUserResponse"></a>
+
+### GetUserResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 
 
 
 
 
-
-<a name="hello-v1-SayHelloResponse"></a>
-
-### SayHelloResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| message | [string](#string) |  |  |
-
-
-
-
-
  
 
  
@@ -56,14 +57,14 @@
  
 
 
-<a name="hello-v1-HelloService"></a>
+<a name="hello-v1-UserService"></a>
 
-### HelloService
+### UserService
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| SayHello | [SayHelloRequest](#hello-v1-SayHelloRequest) | [SayHelloResponse](#hello-v1-SayHelloResponse) |  |
+| GetUser | [GetUserRequest](#hello-v1-GetUserRequest) | [GetUserResponse](#hello-v1-GetUserResponse) |  |
 
  
 

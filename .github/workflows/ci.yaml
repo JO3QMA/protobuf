@@ -1,0 +1,54 @@
+name: Protobuf CI/CD
+
+on:
+  push:
+    branches: [ "master", "main" ] # masterブランチへのpushで動作
+    paths:
+      - 'proto/**'
+      - 'buf.*'
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  # 1. チェックジョブ (PR時 & Push時)
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-setup-action@v1
+      
+      - name: Buf Lint
+        run: buf lint
+        
+      - name: Buf Breaking Change Detection
+        # mainブランチと比較して破壊的変更がないかチェック
+        uses: bufbuild/buf-breaking-action@v1
+        with:
+          against: "https://github.com/${{ github.repository }}.git#branch=master"
+
+  # 2. 生成＆コミットジョブ (master/main Push時のみ)
+  generate:
+    needs: lint
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # リポジトリへの書き込み権限を付与
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Code
+        run: |
+          # 以前の生成物をクリア（ゴミファイルが残らないように）
+          rm -rf gen/go/proto gen/ts/proto gen/ruby/proto gen/openapi
+          # 生成実行
+          buf generate
+
+      - name: Commit & Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: generate protobuf stubs [skip ci]"
+          file_pattern: 'gen/'
