@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package yahoo_auction.v1;
+
+option go_package = "github.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1";
+
+// AuctionService はヤフオクのオークション情報を取得するサービスです。
+service YahooAuctionService {
+  // GetAuction はヤフオクのオークションURLから商品情報を取得します。
+  rpc GetAuction (GetAuctionRequest) returns (GetAuctionResponse);
+}
+
+// GetAuctionRequest はヤフオクのオークションURLを指定するリクエストです。
+message GetAuctionRequest {
+  // url はヤフオクのオークション商品ページのURLです。
+  string url = 1;
+}
+
+// AuctionStatus はオークションの状態を表します。
+enum AuctionStatus {
+  // 状態未指定。クライアントは通常この値を送信しません。
+  AUCTION_STATUS_UNSPECIFIED = 0;
+  // 出品中（入札可能な状態）。
+  AUCTION_STATUS_ACTIVE = 1;
+  // 終了済み（落札または時間切れ）。
+  AUCTION_STATUS_FINISHED = 2;
+  // 出品者都合などでキャンセルされた状態。
+  AUCTION_STATUS_CANCELED = 3;
+}
+
+// GetAuctionResponse はヤフオクのオークション情報を返すレスポンスです。
+message GetAuctionResponse {
+  // auction_id はヤフオクで一意に識別されるオークションIDです。
+  string auction_id = 1;
+
+  // title は商品のタイトル（商品名）です。
+  string title = 2;
+
+  // current_price は現在価格（単位は通常「円」）。
+  // サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
+  int64 current_price = 3;
+
+  // shipping_fee は送料（単位は通常「円」）。
+  // 送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。
+  int64 shipping_fee = 4;
+
+  // status はオークションの状態です。
+  AuctionStatus status = 5;
+}

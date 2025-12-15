@@ -13,6 +13,14 @@
   
     - [UserService](#hello-v1-UserService)
   
+- [yahoo_auction/v1/yahoo_auction.proto](#yahoo_auction_v1_yahoo_auction-proto)
+    - [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest)
+    - [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse)
+  
+    - [AuctionStatus](#yahoo_auction-v1-AuctionStatus)
+  
+    - [YahooAuctionService](#yahoo_auction-v1-YahooAuctionService)
+  
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -130,6 +138,80 @@
 | ----------- | ------------ | ------------- | ------------|
 | GetUser | [GetUserRequest](#hello-v1-GetUserRequest) | [GetUserResponse](#hello-v1-GetUserResponse) |  |
 | SayHello | [SayHelloRequest](#hello-v1-SayHelloRequest) | [SayHelloResponse](#hello-v1-SayHelloResponse) |  |
+
+ 
+
+
+
+<a name="yahoo_auction_v1_yahoo_auction-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## yahoo_auction/v1/yahoo_auction.proto
+
+
+
+<a name="yahoo_auction-v1-GetAuctionRequest"></a>
+
+### GetAuctionRequest
+GetAuctionRequest はヤフオクのオークションURLを指定するリクエストです。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| url | [string](#string) |  | url はヤフオクのオークション商品ページのURLです。 |
+
+
+
+
+
+
+<a name="yahoo_auction-v1-GetAuctionResponse"></a>
+
+### GetAuctionResponse
+GetAuctionResponse はヤフオクのオークション情報を返すレスポンスです。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| auction_id | [string](#string) |  | auction_id はヤフオクで一意に識別されるオークションIDです。 |
+| title | [string](#string) |  | title は商品のタイトル（商品名）です。 |
+| current_price | [int64](#int64) |  | current_price は現在価格（単位は通常「円」）。 サーバ側では整数の金額（例: 1000 = 1000円）として扱います。 |
+| shipping_fee | [int64](#int64) |  | shipping_fee は送料（単位は通常「円」）。 送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。 |
+| status | [AuctionStatus](#yahoo_auction-v1-AuctionStatus) |  | status はオークションの状態です。 |
+
+
+
+
+
+ 
+
+
+<a name="yahoo_auction-v1-AuctionStatus"></a>
+
+### AuctionStatus
+AuctionStatus はオークションの状態を表します。
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| AUCTION_STATUS_UNSPECIFIED | 0 | 状態未指定。クライアントは通常この値を送信しません。 |
+| AUCTION_STATUS_ACTIVE | 1 | 出品中（入札可能な状態）。 |
+| AUCTION_STATUS_FINISHED | 2 | 終了済み（落札または時間切れ）。 |
+| AUCTION_STATUS_CANCELED | 3 | 出品者都合などでキャンセルされた状態。 |
+
+
+ 
+
+ 
+
+
+<a name="yahoo_auction-v1-YahooAuctionService"></a>
+
+### YahooAuctionService
+AuctionService はヤフオクのオークション情報を取得するサービスです。
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetAuction | [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest) | [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse) | GetAuction はヤフオクのオークションURLから商品情報を取得します。 |
 
  
 
