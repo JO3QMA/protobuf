@@ -163,6 +163,103 @@ export declare type AuctionInformation = Message<"yahoo_auction.v1.AuctionInform
 export declare const AuctionInformationSchema: GenMessage<AuctionInformation>;
 
 /**
+ * @generated from message yahoo_auction.v1.GetCategoryItemsRequest
+ */
+export declare type GetCategoryItemsRequest = Message<"yahoo_auction.v1.GetCategoryItemsRequest"> & {
+  /**
+   * category_id はヤフオクのカテゴリIDです。
+   *
+   * @generated from field: string category_id = 1;
+   */
+  categoryId: string;
+
+  /**
+   * page はページ番号です。
+   *
+   * @generated from field: int64 page = 2;
+   */
+  page: bigint;
+};
+
+/**
+ * Describes the message yahoo_auction.v1.GetCategoryItemsRequest.
+ * Use `create(GetCategoryItemsRequestSchema)` to create a new message.
+ */
+export declare const GetCategoryItemsRequestSchema: GenMessage<GetCategoryItemsRequest>;
+
+/**
+ * @generated from message yahoo_auction.v1.GetCategoryItemsResponse
+ */
+export declare type GetCategoryItemsResponse = Message<"yahoo_auction.v1.GetCategoryItemsResponse"> & {
+  /**
+   * items は商品のリストです。
+   *
+   * @generated from field: repeated yahoo_auction.v1.Item items = 1;
+   */
+  items: Item[];
+
+  /**
+   * total_count は商品の総数です。
+   *
+   * @generated from field: int64 total_count = 2;
+   */
+  totalCount: bigint;
+};
+
+/**
+ * Describes the message yahoo_auction.v1.GetCategoryItemsResponse.
+ * Use `create(GetCategoryItemsResponseSchema)` to create a new message.
+ */
+export declare const GetCategoryItemsResponseSchema: GenMessage<GetCategoryItemsResponse>;
+
+/**
+ * @generated from message yahoo_auction.v1.Item
+ */
+export declare type Item = Message<"yahoo_auction.v1.Item"> & {
+  /**
+   * auction_id はヤフオクのオークションIDです。
+   *
+   * @generated from field: string auction_id = 1;
+   */
+  auctionId: string;
+
+  /**
+   * title は商品のタイトル（商品名）です。
+   *
+   * @generated from field: string title = 2;
+   */
+  title: string;
+
+  /**
+   * current_price は現在価格（単位は通常「円」）。
+   * サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
+   *
+   * @generated from field: int64 current_price = 3;
+   */
+  currentPrice: bigint;
+
+  /**
+   * 即決価格
+   *
+   * @generated from field: int64 immediate_price = 4;
+   */
+  immediatePrice: bigint;
+
+  /**
+   * 入札数
+   *
+   * @generated from field: int64 bid_count = 6;
+   */
+  bidCount: bigint;
+};
+
+/**
+ * Describes the message yahoo_auction.v1.Item.
+ * Use `create(ItemSchema)` to create a new message.
+ */
+export declare const ItemSchema: GenMessage<Item>;
+
+/**
  * AuctionStatus はオークションの状態を表します。
  *
  * @generated from enum yahoo_auction.v1.AuctionStatus
@@ -217,6 +314,16 @@ export declare const YahooAuctionService: GenService<{
     methodKind: "unary";
     input: typeof GetAuctionRequestSchema;
     output: typeof GetAuctionResponseSchema;
+  },
+  /**
+   * GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。
+   *
+   * @generated from rpc yahoo_auction.v1.YahooAuctionService.GetCategoryItems
+   */
+  getCategoryItems: {
+    methodKind: "unary";
+    input: typeof GetCategoryItemsRequestSchema;
+    output: typeof GetCategoryItemsResponseSchema;
   },
 }>;
 

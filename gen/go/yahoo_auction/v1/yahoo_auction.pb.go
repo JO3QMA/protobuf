@@ -336,6 +336,196 @@ func (x *AuctionInformation) GetReturnableDetail() string {
 	return ""
 }
 
+type GetCategoryItemsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// category_id はヤフオクのカテゴリIDです。
+	CategoryId string `protobuf:"bytes,1,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	// page はページ番号です。
+	Page          int64 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCategoryItemsRequest) Reset() {
+	*x = GetCategoryItemsRequest{}
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCategoryItemsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategoryItemsRequest) ProtoMessage() {}
+
+func (x *GetCategoryItemsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategoryItemsRequest.ProtoReflect.Descriptor instead.
+func (*GetCategoryItemsRequest) Descriptor() ([]byte, []int) {
+	return file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetCategoryItemsRequest) GetCategoryId() string {
+	if x != nil {
+		return x.CategoryId
+	}
+	return ""
+}
+
+func (x *GetCategoryItemsRequest) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+type GetCategoryItemsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// items は商品のリストです。
+	Items []*Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	// total_count は商品の総数です。
+	TotalCount    int64 `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCategoryItemsResponse) Reset() {
+	*x = GetCategoryItemsResponse{}
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCategoryItemsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategoryItemsResponse) ProtoMessage() {}
+
+func (x *GetCategoryItemsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategoryItemsResponse.ProtoReflect.Descriptor instead.
+func (*GetCategoryItemsResponse) Descriptor() ([]byte, []int) {
+	return file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetCategoryItemsResponse) GetItems() []*Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *GetCategoryItemsResponse) GetTotalCount() int64 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
+type Item struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// auction_id はヤフオクのオークションIDです。
+	AuctionId string `protobuf:"bytes,1,opt,name=auction_id,json=auctionId,proto3" json:"auction_id,omitempty"`
+	// title は商品のタイトル（商品名）です。
+	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	// current_price は現在価格（単位は通常「円」）。
+	// サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
+	CurrentPrice int64 `protobuf:"varint,3,opt,name=current_price,json=currentPrice,proto3" json:"current_price,omitempty"`
+	// 即決価格
+	ImmediatePrice int64 `protobuf:"varint,4,opt,name=immediate_price,json=immediatePrice,proto3" json:"immediate_price,omitempty"`
+	// 入札数
+	BidCount      int64 `protobuf:"varint,6,opt,name=bid_count,json=bidCount,proto3" json:"bid_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Item) Reset() {
+	*x = Item{}
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Item) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Item) ProtoMessage() {}
+
+func (x *Item) ProtoReflect() protoreflect.Message {
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Item.ProtoReflect.Descriptor instead.
+func (*Item) Descriptor() ([]byte, []int) {
+	return file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Item) GetAuctionId() string {
+	if x != nil {
+		return x.AuctionId
+	}
+	return ""
+}
+
+func (x *Item) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Item) GetCurrentPrice() int64 {
+	if x != nil {
+		return x.CurrentPrice
+	}
+	return 0
+}
+
+func (x *Item) GetImmediatePrice() int64 {
+	if x != nil {
+		return x.ImmediatePrice
+	}
+	return 0
+}
+
+func (x *Item) GetBidCount() int64 {
+	if x != nil {
+		return x.BidCount
+	}
+	return 0
+}
+
 var File_yahoo_auction_v1_yahoo_auction_proto protoreflect.FileDescriptor
 
 const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
@@ -366,15 +556,31 @@ const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"\n" +
 	"returnable\x18\a \x01(\bR\n" +
 	"returnable\x12+\n" +
-	"\x11returnable_detail\x18\b \x01(\tR\x10returnableDetail*\x84\x01\n" +
+	"\x11returnable_detail\x18\b \x01(\tR\x10returnableDetail\"N\n" +
+	"\x17GetCategoryItemsRequest\x12\x1f\n" +
+	"\vcategory_id\x18\x01 \x01(\tR\n" +
+	"categoryId\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x03R\x04page\"i\n" +
+	"\x18GetCategoryItemsResponse\x12,\n" +
+	"\x05items\x18\x01 \x03(\v2\x16.yahoo_auction.v1.ItemR\x05items\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x03R\n" +
+	"totalCount\"\xa6\x01\n" +
+	"\x04Item\x12\x1d\n" +
+	"\n" +
+	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12#\n" +
+	"\rcurrent_price\x18\x03 \x01(\x03R\fcurrentPrice\x12'\n" +
+	"\x0fimmediate_price\x18\x04 \x01(\x03R\x0eimmediatePrice\x12\x1b\n" +
+	"\tbid_count\x18\x06 \x01(\x03R\bbidCount*\x84\x01\n" +
 	"\rAuctionStatus\x12\x1e\n" +
 	"\x1aAUCTION_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15AUCTION_STATUS_ACTIVE\x10\x01\x12\x1b\n" +
 	"\x17AUCTION_STATUS_FINISHED\x10\x02\x12\x1b\n" +
-	"\x17AUCTION_STATUS_CANCELED\x10\x032n\n" +
+	"\x17AUCTION_STATUS_CANCELED\x10\x032\xd9\x01\n" +
 	"\x13YahooAuctionService\x12W\n" +
 	"\n" +
-	"GetAuction\x12#.yahoo_auction.v1.GetAuctionRequest\x1a$.yahoo_auction.v1.GetAuctionResponseBDZBgithub.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1b\x06proto3"
+	"GetAuction\x12#.yahoo_auction.v1.GetAuctionRequest\x1a$.yahoo_auction.v1.GetAuctionResponse\x12i\n" +
+	"\x10GetCategoryItems\x12).yahoo_auction.v1.GetCategoryItemsRequest\x1a*.yahoo_auction.v1.GetCategoryItemsResponseBDZBgithub.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1b\x06proto3"
 
 var (
 	file_yahoo_auction_v1_yahoo_auction_proto_rawDescOnce sync.Once
@@ -389,26 +595,32 @@ func file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP() []byte {
 }
 
 var file_yahoo_auction_v1_yahoo_auction_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_yahoo_auction_v1_yahoo_auction_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_yahoo_auction_v1_yahoo_auction_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_yahoo_auction_v1_yahoo_auction_proto_goTypes = []any{
-	(AuctionStatus)(0),            // 0: yahoo_auction.v1.AuctionStatus
-	(*GetAuctionRequest)(nil),     // 1: yahoo_auction.v1.GetAuctionRequest
-	(*GetAuctionResponse)(nil),    // 2: yahoo_auction.v1.GetAuctionResponse
-	(*AuctionInformation)(nil),    // 3: yahoo_auction.v1.AuctionInformation
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(AuctionStatus)(0),               // 0: yahoo_auction.v1.AuctionStatus
+	(*GetAuctionRequest)(nil),        // 1: yahoo_auction.v1.GetAuctionRequest
+	(*GetAuctionResponse)(nil),       // 2: yahoo_auction.v1.GetAuctionResponse
+	(*AuctionInformation)(nil),       // 3: yahoo_auction.v1.AuctionInformation
+	(*GetCategoryItemsRequest)(nil),  // 4: yahoo_auction.v1.GetCategoryItemsRequest
+	(*GetCategoryItemsResponse)(nil), // 5: yahoo_auction.v1.GetCategoryItemsResponse
+	(*Item)(nil),                     // 6: yahoo_auction.v1.Item
+	(*timestamppb.Timestamp)(nil),    // 7: google.protobuf.Timestamp
 }
 var file_yahoo_auction_v1_yahoo_auction_proto_depIdxs = []int32{
 	0, // 0: yahoo_auction.v1.GetAuctionResponse.status:type_name -> yahoo_auction.v1.AuctionStatus
 	3, // 1: yahoo_auction.v1.GetAuctionResponse.auction_information:type_name -> yahoo_auction.v1.AuctionInformation
-	4, // 2: yahoo_auction.v1.AuctionInformation.start_time:type_name -> google.protobuf.Timestamp
-	4, // 3: yahoo_auction.v1.AuctionInformation.end_time:type_name -> google.protobuf.Timestamp
-	1, // 4: yahoo_auction.v1.YahooAuctionService.GetAuction:input_type -> yahoo_auction.v1.GetAuctionRequest
-	2, // 5: yahoo_auction.v1.YahooAuctionService.GetAuction:output_type -> yahoo_auction.v1.GetAuctionResponse
-	5, // [5:6] is the sub-list for method output_type
-	4, // [4:5] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	7, // 2: yahoo_auction.v1.AuctionInformation.start_time:type_name -> google.protobuf.Timestamp
+	7, // 3: yahoo_auction.v1.AuctionInformation.end_time:type_name -> google.protobuf.Timestamp
+	6, // 4: yahoo_auction.v1.GetCategoryItemsResponse.items:type_name -> yahoo_auction.v1.Item
+	1, // 5: yahoo_auction.v1.YahooAuctionService.GetAuction:input_type -> yahoo_auction.v1.GetAuctionRequest
+	4, // 6: yahoo_auction.v1.YahooAuctionService.GetCategoryItems:input_type -> yahoo_auction.v1.GetCategoryItemsRequest
+	2, // 7: yahoo_auction.v1.YahooAuctionService.GetAuction:output_type -> yahoo_auction.v1.GetAuctionResponse
+	5, // 8: yahoo_auction.v1.YahooAuctionService.GetCategoryItems:output_type -> yahoo_auction.v1.GetCategoryItemsResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_yahoo_auction_v1_yahoo_auction_proto_init() }
@@ -422,7 +634,7 @@ func file_yahoo_auction_v1_yahoo_auction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_yahoo_auction_v1_yahoo_auction_proto_rawDesc), len(file_yahoo_auction_v1_yahoo_auction_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   3,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

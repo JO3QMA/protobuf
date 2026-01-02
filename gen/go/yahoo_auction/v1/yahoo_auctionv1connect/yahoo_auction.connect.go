@@ -36,12 +36,17 @@ const (
 	// YahooAuctionServiceGetAuctionProcedure is the fully-qualified name of the YahooAuctionService's
 	// GetAuction RPC.
 	YahooAuctionServiceGetAuctionProcedure = "/yahoo_auction.v1.YahooAuctionService/GetAuction"
+	// YahooAuctionServiceGetCategoryItemsProcedure is the fully-qualified name of the
+	// YahooAuctionService's GetCategoryItems RPC.
+	YahooAuctionServiceGetCategoryItemsProcedure = "/yahoo_auction.v1.YahooAuctionService/GetCategoryItems"
 )
 
 // YahooAuctionServiceClient is a client for the yahoo_auction.v1.YahooAuctionService service.
 type YahooAuctionServiceClient interface {
 	// GetAuction はヤフオクのオークションIDから商品情報を取得します。
 	GetAuction(context.Context, *connect.Request[v1.GetAuctionRequest]) (*connect.Response[v1.GetAuctionResponse], error)
+	// GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。
+	GetCategoryItems(context.Context, *connect.Request[v1.GetCategoryItemsRequest]) (*connect.Response[v1.GetCategoryItemsResponse], error)
 }
 
 // NewYahooAuctionServiceClient constructs a client for the yahoo_auction.v1.YahooAuctionService
@@ -61,12 +66,19 @@ func NewYahooAuctionServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(yahooAuctionServiceMethods.ByName("GetAuction")),
 			connect.WithClientOptions(opts...),
 		),
+		getCategoryItems: connect.NewClient[v1.GetCategoryItemsRequest, v1.GetCategoryItemsResponse](
+			httpClient,
+			baseURL+YahooAuctionServiceGetCategoryItemsProcedure,
+			connect.WithSchema(yahooAuctionServiceMethods.ByName("GetCategoryItems")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // yahooAuctionServiceClient implements YahooAuctionServiceClient.
 type yahooAuctionServiceClient struct {
-	getAuction *connect.Client[v1.GetAuctionRequest, v1.GetAuctionResponse]
+	getAuction       *connect.Client[v1.GetAuctionRequest, v1.GetAuctionResponse]
+	getCategoryItems *connect.Client[v1.GetCategoryItemsRequest, v1.GetCategoryItemsResponse]
 }
 
 // GetAuction calls yahoo_auction.v1.YahooAuctionService.GetAuction.
@@ -74,11 +86,18 @@ func (c *yahooAuctionServiceClient) GetAuction(ctx context.Context, req *connect
 	return c.getAuction.CallUnary(ctx, req)
 }
 
+// GetCategoryItems calls yahoo_auction.v1.YahooAuctionService.GetCategoryItems.
+func (c *yahooAuctionServiceClient) GetCategoryItems(ctx context.Context, req *connect.Request[v1.GetCategoryItemsRequest]) (*connect.Response[v1.GetCategoryItemsResponse], error) {
+	return c.getCategoryItems.CallUnary(ctx, req)
+}
+
 // YahooAuctionServiceHandler is an implementation of the yahoo_auction.v1.YahooAuctionService
 // service.
 type YahooAuctionServiceHandler interface {
 	// GetAuction はヤフオクのオークションIDから商品情報を取得します。
 	GetAuction(context.Context, *connect.Request[v1.GetAuctionRequest]) (*connect.Response[v1.GetAuctionResponse], error)
+	// GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。
+	GetCategoryItems(context.Context, *connect.Request[v1.GetCategoryItemsRequest]) (*connect.Response[v1.GetCategoryItemsResponse], error)
 }
 
 // NewYahooAuctionServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -94,10 +113,18 @@ func NewYahooAuctionServiceHandler(svc YahooAuctionServiceHandler, opts ...conne
 		connect.WithSchema(yahooAuctionServiceMethods.ByName("GetAuction")),
 		connect.WithHandlerOptions(opts...),
 	)
+	yahooAuctionServiceGetCategoryItemsHandler := connect.NewUnaryHandler(
+		YahooAuctionServiceGetCategoryItemsProcedure,
+		svc.GetCategoryItems,
+		connect.WithSchema(yahooAuctionServiceMethods.ByName("GetCategoryItems")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/yahoo_auction.v1.YahooAuctionService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case YahooAuctionServiceGetAuctionProcedure:
 			yahooAuctionServiceGetAuctionHandler.ServeHTTP(w, r)
+		case YahooAuctionServiceGetCategoryItemsProcedure:
+			yahooAuctionServiceGetCategoryItemsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -109,4 +136,8 @@ type UnimplementedYahooAuctionServiceHandler struct{}
 
 func (UnimplementedYahooAuctionServiceHandler) GetAuction(context.Context, *connect.Request[v1.GetAuctionRequest]) (*connect.Response[v1.GetAuctionResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("yahoo_auction.v1.YahooAuctionService.GetAuction is not implemented"))
+}
+
+func (UnimplementedYahooAuctionServiceHandler) GetCategoryItems(context.Context, *connect.Request[v1.GetCategoryItemsRequest]) (*connect.Response[v1.GetCategoryItemsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("yahoo_auction.v1.YahooAuctionService.GetCategoryItems is not implemented"))
 }
