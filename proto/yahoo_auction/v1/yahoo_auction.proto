@@ -57,6 +57,8 @@ message GetAuctionResponse {
   // images は商品の画像URLのリストです。
   repeated string images = 6;
 
+  // auction_information はオークション情報です。
+  AuctionInformation auction_information = 7;
 }
 
 message AuctionInformation {
