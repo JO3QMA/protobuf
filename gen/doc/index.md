@@ -176,8 +176,8 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 | auction_id | [string](#string) |  | auction_id はヤフオクで一意に識別されるオークションIDです。 |
 | title | [string](#string) |  | title は商品のタイトル（商品名）です。 |
 | current_price | [int64](#int64) |  | current_price は現在価格（単位は通常「円」）。 サーバ側では整数の金額（例: 1000 = 1000円）として扱います。 |
-| shipping_fee | [int64](#int64) |  | shipping_fee は送料（単位は通常「円」）。 送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。 |
 | status | [AuctionStatus](#yahoo_auction-v1-AuctionStatus) |  | status はオークションの状態です。 |
+| images | [string](#string) | repeated | images は商品の画像URLのリストです。 |
 
 
 

@@ -60,19 +60,18 @@ export declare type GetAuctionResponse = Message<"yahoo_auction.v1.GetAuctionRes
   currentPrice: bigint;
 
   /**
-   * shipping_fee は送料（単位は通常「円」）。
-   * 送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。
-   *
-   * @generated from field: int64 shipping_fee = 4;
-   */
-  shippingFee: bigint;
-
-  /**
    * status はオークションの状態です。
    *
    * @generated from field: yahoo_auction.v1.AuctionStatus status = 5;
    */
   status: AuctionStatus;
+
+  /**
+   * images は商品の画像URLのリストです。
+   *
+   * @generated from field: repeated string images = 6;
+   */
+  images: string[];
 };
 
 /**

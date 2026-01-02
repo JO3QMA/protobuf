@@ -136,11 +136,10 @@ type GetAuctionResponse struct {
 	// current_price は現在価格（単位は通常「円」）。
 	// サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
 	CurrentPrice int64 `protobuf:"varint,3,opt,name=current_price,json=currentPrice,proto3" json:"current_price,omitempty"`
-	// shipping_fee は送料（単位は通常「円」）。
-	// 送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。
-	ShippingFee int64 `protobuf:"varint,4,opt,name=shipping_fee,json=shippingFee,proto3" json:"shipping_fee,omitempty"`
 	// status はオークションの状態です。
-	Status        AuctionStatus `protobuf:"varint,5,opt,name=status,proto3,enum=yahoo_auction.v1.AuctionStatus" json:"status,omitempty"`
+	Status AuctionStatus `protobuf:"varint,5,opt,name=status,proto3,enum=yahoo_auction.v1.AuctionStatus" json:"status,omitempty"`
+	// images は商品の画像URLのリストです。
+	Images        []string `protobuf:"bytes,6,rep,name=images,proto3" json:"images,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -196,18 +195,18 @@ func (x *GetAuctionResponse) GetCurrentPrice() int64 {
 	return 0
 }
 
-func (x *GetAuctionResponse) GetShippingFee() int64 {
-	if x != nil {
-		return x.ShippingFee
-	}
-	return 0
-}
-
 func (x *GetAuctionResponse) GetStatus() AuctionStatus {
 	if x != nil {
 		return x.Status
 	}
 	return AuctionStatus_AUCTION_STATUS_UNSPECIFIED
+}
+
+func (x *GetAuctionResponse) GetImages() []string {
+	if x != nil {
+		return x.Images
+	}
+	return nil
 }
 
 var File_yahoo_auction_v1_yahoo_auction_proto protoreflect.FileDescriptor
@@ -217,14 +216,14 @@ const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\x1a\x17validate/validate.proto\"R\n" +
 	"\x11GetAuctionRequest\x12=\n" +
 	"\n" +
-	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\xca\x01\n" +
+	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\xbf\x01\n" +
 	"\x12GetAuctionResponse\x12\x1d\n" +
 	"\n" +
 	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12#\n" +
-	"\rcurrent_price\x18\x03 \x01(\x03R\fcurrentPrice\x12!\n" +
-	"\fshipping_fee\x18\x04 \x01(\x03R\vshippingFee\x127\n" +
-	"\x06status\x18\x05 \x01(\x0e2\x1f.yahoo_auction.v1.AuctionStatusR\x06status*\x84\x01\n" +
+	"\rcurrent_price\x18\x03 \x01(\x03R\fcurrentPrice\x127\n" +
+	"\x06status\x18\x05 \x01(\x0e2\x1f.yahoo_auction.v1.AuctionStatusR\x06status\x12\x16\n" +
+	"\x06images\x18\x06 \x03(\tR\x06images*\x84\x01\n" +
 	"\rAuctionStatus\x12\x1e\n" +
 	"\x1aAUCTION_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15AUCTION_STATUS_ACTIVE\x10\x01\x12\x1b\n" +
