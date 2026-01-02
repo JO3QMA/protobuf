@@ -2,18 +2,25 @@ syntax = "proto3";
 
 package yahoo_auction.v1;
 
+import "validate/validate.proto";
+
 option go_package = "github.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1";
 
 // AuctionService はヤフオクのオークション情報を取得するサービスです。
 service YahooAuctionService {
-  // GetAuction はヤフオクのオークションURLから商品情報を取得します。
+  // GetAuction はヤフオクのオークションIDから商品情報を取得します。
   rpc GetAuction (GetAuctionRequest) returns (GetAuctionResponse);
 }
 
-// GetAuctionRequest はヤフオクのオークションURLを指定するリクエストです。
+// GetAuctionRequest はヤフオクのオークションIDを指定するリクエストです。
 message GetAuctionRequest {
-  // url はヤフオクのオークション商品ページのURLです。
-  string url = 1;
+  // auction_id はヤフオクのオークションIDです。
+  // 8桁から11桁の英数字です。
+  string auction_id = 1 [(validate.rules).string = {
+    pattern: "^[a-zA-Z0-9]{8,11}$",
+    min_len: 8,
+    max_len: 11
+  }];
 }
 
 // AuctionStatus はオークションの状態を表します。
