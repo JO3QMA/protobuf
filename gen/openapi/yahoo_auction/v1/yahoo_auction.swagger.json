@@ -44,46 +44,6 @@
           }
         }
       }
-    },
-    "v1AuctionStatus": {
-      "type": "string",
-      "enum": [
-        "AUCTION_STATUS_UNSPECIFIED",
-        "AUCTION_STATUS_ACTIVE",
-        "AUCTION_STATUS_FINISHED",
-        "AUCTION_STATUS_CANCELED"
-      ],
-      "default": "AUCTION_STATUS_UNSPECIFIED",
-      "description": "- AUCTION_STATUS_UNSPECIFIED: 状態未指定。クライアントは通常この値を送信しません。\n - AUCTION_STATUS_ACTIVE: 出品中（入札可能な状態）。\n - AUCTION_STATUS_FINISHED: 終了済み（落札または時間切れ）。\n - AUCTION_STATUS_CANCELED: 出品者都合などでキャンセルされた状態。",
-      "title": "AuctionStatus はオークションの状態を表します。"
-    },
-    "v1GetAuctionResponse": {
-      "type": "object",
-      "properties": {
-        "auctionId": {
-          "type": "string",
-          "title": "auction_id はヤフオクで一意に識別されるオークションIDです。"
-        },
-        "title": {
-          "type": "string",
-          "title": "title は商品のタイトル（商品名）です。"
-        },
-        "currentPrice": {
-          "type": "string",
-          "format": "int64",
-          "title": "current_price は現在価格（単位は通常「円」）。\nサーバ側では整数の金額（例: 1000 = 1000円）として扱います。"
-        },
-        "shippingFee": {
-          "type": "string",
-          "format": "int64",
-          "title": "shipping_fee は送料（単位は通常「円」）。\n送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。"
-        },
-        "status": {
-          "$ref": "#/definitions/v1AuctionStatus",
-          "title": "status はオークションの状態です。"
-        }
-      },
-      "title": "GetAuctionResponse はヤフオクのオークション情報を返すレスポンスです。"
     }
   }
 }
