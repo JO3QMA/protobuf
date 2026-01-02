@@ -5,6 +5,7 @@ modules:
 deps:
   - buf.build/googleapis/googleapis # google.api.http (OpenAPI用)
   - buf.build/gnostic/gnostic       # OpenAPI生成ツール用の依存
+  - buf.build/envoyproxy/protoc-gen-validate # ProtoValidate用
 lint:
   use:
     - DEFAULT

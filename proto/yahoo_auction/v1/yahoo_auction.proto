@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package yahoo_auction.v1;
+
+import "validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1";
+
+// AuctionService はヤフオクのオークション情報を取得するサービスです。
+service YahooAuctionService {
+  // GetAuction はヤフオクのオークションIDから商品情報を取得します。
+  rpc GetAuction (GetAuctionRequest) returns (GetAuctionResponse);
+}
+
+// GetAuctionRequest はヤフオクのオークションIDを指定するリクエストです。
+message GetAuctionRequest {
+  // auction_id はヤフオクのオークションIDです。
+  // 8桁から11桁の英数字です。
+  string auction_id = 1 [(validate.rules).string = {
+    pattern: "^[a-zA-Z0-9]{8,11}$",
+    min_len: 8,
+    max_len: 11
+  }];
+}
+
+// AuctionStatus はオークションの状態を表します。
+enum AuctionStatus {
+  // 状態未指定。クライアントは通常この値を送信しません。
+  AUCTION_STATUS_UNSPECIFIED = 0;
+  // 出品中（入札可能な状態）。
+  AUCTION_STATUS_ACTIVE = 1;
+  // 終了済み（落札または時間切れ）。
+  AUCTION_STATUS_FINISHED = 2;
+  // 出品者都合などでキャンセルされた状態。
+  AUCTION_STATUS_CANCELED = 3;
+}
+
+// GetAuctionResponse はヤフオクのオークション情報を返すレスポンスです。
+message GetAuctionResponse {
+  // auction_id はヤフオクで一意に識別されるオークションIDです。
+  string auction_id = 1;
+
+  // title は商品のタイトル（商品名）です。
+  string title = 2;
+
+  // current_price は現在価格（単位は通常「円」）。
+  // サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
+  int64 current_price = 3;
+
+  // shipping_fee は送料（単位は通常「円」）。
+  // 送料が不明な場合は 0 などの扱いをサーバ仕様で決めてください。
+  // int64 shipping_fee = 4;
+
+  // status はオークションの状態です。
+  AuctionStatus status = 5;
+
+  // images は商品の画像URLのリストです。
+  repeated string images = 6;
+
+  // auction_information はオークション情報です。
+  AuctionInformation auction_information = 7;
+
+  // description は商品の説明です。
+  string description = 8;
+}
+
+message AuctionInformation {
+  // AuctionID はヤフオクのオークションIDです。
+  string auction_id = 1;
+
+  // start_price は始値（単位は通常「円」）。
+  int64 start_price = 2;
+
+  // start_time は開始時間です。
+  google.protobuf.Timestamp start_time = 3;
+
+  // end_time は終了時間です。
+  google.protobuf.Timestamp end_time = 4;
+
+  // 早期終了
+  bool early_end = 5;
+
+  // 自動延長
+  bool auto_extension = 6;
+
+  // 返品の可否
+  bool returnable = 7;
+
+  // 返品の可否(詳細)
+  string returnable_detail = 8;
+}
