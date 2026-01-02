@@ -143,8 +143,10 @@ type GetAuctionResponse struct {
 	Images []string `protobuf:"bytes,6,rep,name=images,proto3" json:"images,omitempty"`
 	// auction_information はオークション情報です。
 	AuctionInformation *AuctionInformation `protobuf:"bytes,7,opt,name=auction_information,json=auctionInformation,proto3" json:"auction_information,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	// description は商品の説明です。
+	Description   string `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetAuctionResponse) Reset() {
@@ -217,6 +219,13 @@ func (x *GetAuctionResponse) GetAuctionInformation() *AuctionInformation {
 		return x.AuctionInformation
 	}
 	return nil
+}
+
+func (x *GetAuctionResponse) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
 }
 
 type AuctionInformation struct {
@@ -334,7 +343,7 @@ const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\x1a\x17validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
 	"\x11GetAuctionRequest\x12=\n" +
 	"\n" +
-	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\x96\x02\n" +
+	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\xb8\x02\n" +
 	"\x12GetAuctionResponse\x12\x1d\n" +
 	"\n" +
 	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n" +
@@ -342,7 +351,8 @@ const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"\rcurrent_price\x18\x03 \x01(\x03R\fcurrentPrice\x127\n" +
 	"\x06status\x18\x05 \x01(\x0e2\x1f.yahoo_auction.v1.AuctionStatusR\x06status\x12\x16\n" +
 	"\x06images\x18\x06 \x03(\tR\x06images\x12U\n" +
-	"\x13auction_information\x18\a \x01(\v2$.yahoo_auction.v1.AuctionInformationR\x12auctionInformation\"\xd7\x02\n" +
+	"\x13auction_information\x18\a \x01(\v2$.yahoo_auction.v1.AuctionInformationR\x12auctionInformation\x12 \n" +
+	"\vdescription\x18\b \x01(\tR\vdescription\"\xd7\x02\n" +
 	"\x12AuctionInformation\x12\x1d\n" +
 	"\n" +
 	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x1f\n" +

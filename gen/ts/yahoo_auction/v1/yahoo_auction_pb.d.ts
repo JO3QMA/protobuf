@@ -80,6 +80,13 @@ export declare type GetAuctionResponse = Message<"yahoo_auction.v1.GetAuctionRes
    * @generated from field: yahoo_auction.v1.AuctionInformation auction_information = 7;
    */
   auctionInformation?: AuctionInformation;
+
+  /**
+   * description は商品の説明です。
+   *
+   * @generated from field: string description = 8;
+   */
+  description: string;
 };
 
 /**

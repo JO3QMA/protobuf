@@ -202,6 +202,7 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 | status | [AuctionStatus](#yahoo_auction-v1-AuctionStatus) |  | status はオークションの状態です。 |
 | images | [string](#string) | repeated | images は商品の画像URLのリストです。 |
 | auction_information | [AuctionInformation](#yahoo_auction-v1-AuctionInformation) |  | auction_information はオークション情報です。 |
+| description | [string](#string) |  | description は商品の説明です。 |
 
 
 
