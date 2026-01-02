@@ -4,6 +4,7 @@
 
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file yahoo_auction/v1/yahoo_auction.proto.
@@ -72,6 +73,13 @@ export declare type GetAuctionResponse = Message<"yahoo_auction.v1.GetAuctionRes
    * @generated from field: repeated string images = 6;
    */
   images: string[];
+
+  /**
+   * auction_information はオークション情報です。
+   *
+   * @generated from field: yahoo_auction.v1.AuctionInformation auction_information = 7;
+   */
+  auctionInformation?: AuctionInformation;
 };
 
 /**
@@ -79,6 +87,73 @@ export declare type GetAuctionResponse = Message<"yahoo_auction.v1.GetAuctionRes
  * Use `create(GetAuctionResponseSchema)` to create a new message.
  */
 export declare const GetAuctionResponseSchema: GenMessage<GetAuctionResponse>;
+
+/**
+ * @generated from message yahoo_auction.v1.AuctionInformation
+ */
+export declare type AuctionInformation = Message<"yahoo_auction.v1.AuctionInformation"> & {
+  /**
+   * AuctionID はヤフオクのオークションIDです。
+   *
+   * @generated from field: string auction_id = 1;
+   */
+  auctionId: string;
+
+  /**
+   * start_price は始値（単位は通常「円」）。
+   *
+   * @generated from field: int64 start_price = 2;
+   */
+  startPrice: bigint;
+
+  /**
+   * start_time は開始時間です。
+   *
+   * @generated from field: google.protobuf.Timestamp start_time = 3;
+   */
+  startTime?: Timestamp;
+
+  /**
+   * end_time は終了時間です。
+   *
+   * @generated from field: google.protobuf.Timestamp end_time = 4;
+   */
+  endTime?: Timestamp;
+
+  /**
+   * 早期終了
+   *
+   * @generated from field: bool early_end = 5;
+   */
+  earlyEnd: boolean;
+
+  /**
+   * 自動延長
+   *
+   * @generated from field: bool auto_extension = 6;
+   */
+  autoExtension: boolean;
+
+  /**
+   * 返品の可否
+   *
+   * @generated from field: bool returnable = 7;
+   */
+  returnable: boolean;
+
+  /**
+   * 返品の可否(詳細)
+   *
+   * @generated from field: string returnable_detail = 8;
+   */
+  returnableDetail: string;
+};
+
+/**
+ * Describes the message yahoo_auction.v1.AuctionInformation.
+ * Use `create(AuctionInformationSchema)` to create a new message.
+ */
+export declare const AuctionInformationSchema: GenMessage<AuctionInformation>;
 
 /**
  * AuctionStatus はオークションの状態を表します。

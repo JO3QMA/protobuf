@@ -10,6 +10,7 @@ import (
 	_ "github.com/envoyproxy/protoc-gen-validate/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -139,9 +140,11 @@ type GetAuctionResponse struct {
 	// status はオークションの状態です。
 	Status AuctionStatus `protobuf:"varint,5,opt,name=status,proto3,enum=yahoo_auction.v1.AuctionStatus" json:"status,omitempty"`
 	// images は商品の画像URLのリストです。
-	Images        []string `protobuf:"bytes,6,rep,name=images,proto3" json:"images,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Images []string `protobuf:"bytes,6,rep,name=images,proto3" json:"images,omitempty"`
+	// auction_information はオークション情報です。
+	AuctionInformation *AuctionInformation `protobuf:"bytes,7,opt,name=auction_information,json=auctionInformation,proto3" json:"auction_information,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetAuctionResponse) Reset() {
@@ -209,21 +212,151 @@ func (x *GetAuctionResponse) GetImages() []string {
 	return nil
 }
 
+func (x *GetAuctionResponse) GetAuctionInformation() *AuctionInformation {
+	if x != nil {
+		return x.AuctionInformation
+	}
+	return nil
+}
+
+type AuctionInformation struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// AuctionID はヤフオクのオークションIDです。
+	AuctionId string `protobuf:"bytes,1,opt,name=auction_id,json=auctionId,proto3" json:"auction_id,omitempty"`
+	// start_price は始値（単位は通常「円」）。
+	StartPrice int64 `protobuf:"varint,2,opt,name=start_price,json=startPrice,proto3" json:"start_price,omitempty"`
+	// start_time は開始時間です。
+	StartTime *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	// end_time は終了時間です。
+	EndTime *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	// 早期終了
+	EarlyEnd bool `protobuf:"varint,5,opt,name=early_end,json=earlyEnd,proto3" json:"early_end,omitempty"`
+	// 自動延長
+	AutoExtension bool `protobuf:"varint,6,opt,name=auto_extension,json=autoExtension,proto3" json:"auto_extension,omitempty"`
+	// 返品の可否
+	Returnable bool `protobuf:"varint,7,opt,name=returnable,proto3" json:"returnable,omitempty"`
+	// 返品の可否(詳細)
+	ReturnableDetail string `protobuf:"bytes,8,opt,name=returnable_detail,json=returnableDetail,proto3" json:"returnable_detail,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *AuctionInformation) Reset() {
+	*x = AuctionInformation{}
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AuctionInformation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AuctionInformation) ProtoMessage() {}
+
+func (x *AuctionInformation) ProtoReflect() protoreflect.Message {
+	mi := &file_yahoo_auction_v1_yahoo_auction_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AuctionInformation.ProtoReflect.Descriptor instead.
+func (*AuctionInformation) Descriptor() ([]byte, []int) {
+	return file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AuctionInformation) GetAuctionId() string {
+	if x != nil {
+		return x.AuctionId
+	}
+	return ""
+}
+
+func (x *AuctionInformation) GetStartPrice() int64 {
+	if x != nil {
+		return x.StartPrice
+	}
+	return 0
+}
+
+func (x *AuctionInformation) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *AuctionInformation) GetEndTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndTime
+	}
+	return nil
+}
+
+func (x *AuctionInformation) GetEarlyEnd() bool {
+	if x != nil {
+		return x.EarlyEnd
+	}
+	return false
+}
+
+func (x *AuctionInformation) GetAutoExtension() bool {
+	if x != nil {
+		return x.AutoExtension
+	}
+	return false
+}
+
+func (x *AuctionInformation) GetReturnable() bool {
+	if x != nil {
+		return x.Returnable
+	}
+	return false
+}
+
+func (x *AuctionInformation) GetReturnableDetail() string {
+	if x != nil {
+		return x.ReturnableDetail
+	}
+	return ""
+}
+
 var File_yahoo_auction_v1_yahoo_auction_proto protoreflect.FileDescriptor
 
 const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"\n" +
-	"$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\x1a\x17validate/validate.proto\"R\n" +
+	"$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\x1a\x17validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
 	"\x11GetAuctionRequest\x12=\n" +
 	"\n" +
-	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\xbf\x01\n" +
+	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\x96\x02\n" +
 	"\x12GetAuctionResponse\x12\x1d\n" +
 	"\n" +
 	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12#\n" +
 	"\rcurrent_price\x18\x03 \x01(\x03R\fcurrentPrice\x127\n" +
 	"\x06status\x18\x05 \x01(\x0e2\x1f.yahoo_auction.v1.AuctionStatusR\x06status\x12\x16\n" +
-	"\x06images\x18\x06 \x03(\tR\x06images*\x84\x01\n" +
+	"\x06images\x18\x06 \x03(\tR\x06images\x12U\n" +
+	"\x13auction_information\x18\a \x01(\v2$.yahoo_auction.v1.AuctionInformationR\x12auctionInformation\"\xd7\x02\n" +
+	"\x12AuctionInformation\x12\x1d\n" +
+	"\n" +
+	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x1f\n" +
+	"\vstart_price\x18\x02 \x01(\x03R\n" +
+	"startPrice\x129\n" +
+	"\n" +
+	"start_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x125\n" +
+	"\bend_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\aendTime\x12\x1b\n" +
+	"\tearly_end\x18\x05 \x01(\bR\bearlyEnd\x12%\n" +
+	"\x0eauto_extension\x18\x06 \x01(\bR\rautoExtension\x12\x1e\n" +
+	"\n" +
+	"returnable\x18\a \x01(\bR\n" +
+	"returnable\x12+\n" +
+	"\x11returnable_detail\x18\b \x01(\tR\x10returnableDetail*\x84\x01\n" +
 	"\rAuctionStatus\x12\x1e\n" +
 	"\x1aAUCTION_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15AUCTION_STATUS_ACTIVE\x10\x01\x12\x1b\n" +
@@ -246,21 +379,26 @@ func file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP() []byte {
 }
 
 var file_yahoo_auction_v1_yahoo_auction_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_yahoo_auction_v1_yahoo_auction_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_yahoo_auction_v1_yahoo_auction_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_yahoo_auction_v1_yahoo_auction_proto_goTypes = []any{
-	(AuctionStatus)(0),         // 0: yahoo_auction.v1.AuctionStatus
-	(*GetAuctionRequest)(nil),  // 1: yahoo_auction.v1.GetAuctionRequest
-	(*GetAuctionResponse)(nil), // 2: yahoo_auction.v1.GetAuctionResponse
+	(AuctionStatus)(0),            // 0: yahoo_auction.v1.AuctionStatus
+	(*GetAuctionRequest)(nil),     // 1: yahoo_auction.v1.GetAuctionRequest
+	(*GetAuctionResponse)(nil),    // 2: yahoo_auction.v1.GetAuctionResponse
+	(*AuctionInformation)(nil),    // 3: yahoo_auction.v1.AuctionInformation
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_yahoo_auction_v1_yahoo_auction_proto_depIdxs = []int32{
 	0, // 0: yahoo_auction.v1.GetAuctionResponse.status:type_name -> yahoo_auction.v1.AuctionStatus
-	1, // 1: yahoo_auction.v1.YahooAuctionService.GetAuction:input_type -> yahoo_auction.v1.GetAuctionRequest
-	2, // 2: yahoo_auction.v1.YahooAuctionService.GetAuction:output_type -> yahoo_auction.v1.GetAuctionResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	3, // 1: yahoo_auction.v1.GetAuctionResponse.auction_information:type_name -> yahoo_auction.v1.AuctionInformation
+	4, // 2: yahoo_auction.v1.AuctionInformation.start_time:type_name -> google.protobuf.Timestamp
+	4, // 3: yahoo_auction.v1.AuctionInformation.end_time:type_name -> google.protobuf.Timestamp
+	1, // 4: yahoo_auction.v1.YahooAuctionService.GetAuction:input_type -> yahoo_auction.v1.GetAuctionRequest
+	2, // 5: yahoo_auction.v1.YahooAuctionService.GetAuction:output_type -> yahoo_auction.v1.GetAuctionResponse
+	5, // [5:6] is the sub-list for method output_type
+	4, // [4:5] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_yahoo_auction_v1_yahoo_auction_proto_init() }
@@ -274,7 +412,7 @@ func file_yahoo_auction_v1_yahoo_auction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_yahoo_auction_v1_yahoo_auction_proto_rawDesc), len(file_yahoo_auction_v1_yahoo_auction_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

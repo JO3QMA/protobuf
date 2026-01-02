@@ -14,6 +14,7 @@
     - [UserService](#hello-v1-UserService)
   
 - [yahoo_auction/v1/yahoo_auction.proto](#yahoo_auction_v1_yahoo_auction-proto)
+    - [AuctionInformation](#yahoo_auction-v1-AuctionInformation)
     - [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest)
     - [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse)
   
@@ -150,6 +151,28 @@
 
 
 
+<a name="yahoo_auction-v1-AuctionInformation"></a>
+
+### AuctionInformation
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| auction_id | [string](#string) |  | AuctionID はヤフオクのオークションIDです。 |
+| start_price | [int64](#int64) |  | start_price は始値（単位は通常「円」）。 |
+| start_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | start_time は開始時間です。 |
+| end_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | end_time は終了時間です。 |
+| early_end | [bool](#bool) |  | 早期終了 |
+| auto_extension | [bool](#bool) |  | 自動延長 |
+| returnable | [bool](#bool) |  | 返品の可否 |
+| returnable_detail | [string](#string) |  | 返品の可否(詳細) |
+
+
+
+
+
+
 <a name="yahoo_auction-v1-GetAuctionRequest"></a>
 
 ### GetAuctionRequest
@@ -178,6 +201,7 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 | current_price | [int64](#int64) |  | current_price は現在価格（単位は通常「円」）。 サーバ側では整数の金額（例: 1000 = 1000円）として扱います。 |
 | status | [AuctionStatus](#yahoo_auction-v1-AuctionStatus) |  | status はオークションの状態です。 |
 | images | [string](#string) | repeated | images は商品の画像URLのリストです。 |
+| auction_information | [AuctionInformation](#yahoo_auction-v1-AuctionInformation) |  | auction_information はオークション情報です。 |
 
 
 
