@@ -3,6 +3,7 @@ syntax = "proto3";
 package yahoo_auction.v1;
 
 import "validate/validate.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1";
 
