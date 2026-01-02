@@ -19,7 +19,7 @@
     - [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse)
     - [GetCategoryItemsRequest](#yahoo_auction-v1-GetCategoryItemsRequest)
     - [GetCategoryItemsResponse](#yahoo_auction-v1-GetCategoryItemsResponse)
-    - [Item](#yahoo_auction-v1-Item)
+    - [GetCategoryItemsResponse.Item](#yahoo_auction-v1-GetCategoryItemsResponse-Item)
   
     - [AuctionStatus](#yahoo_auction-v1-AuctionStatus)
   
@@ -236,7 +236,7 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| items | [Item](#yahoo_auction-v1-Item) | repeated | items は商品のリストです。 |
+| items | [GetCategoryItemsResponse.Item](#yahoo_auction-v1-GetCategoryItemsResponse-Item) | repeated | items は商品のリストです。 |
 | total_count | [int64](#int64) |  | total_count は商品の総数です。 |
 
 
@@ -244,9 +244,9 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 
 
 
-<a name="yahoo_auction-v1-Item"></a>
+<a name="yahoo_auction-v1-GetCategoryItemsResponse-Item"></a>
 
-### Item
+### GetCategoryItemsResponse.Item
 
 
 

@@ -194,9 +194,9 @@ export declare type GetCategoryItemsResponse = Message<"yahoo_auction.v1.GetCate
   /**
    * items は商品のリストです。
    *
-   * @generated from field: repeated yahoo_auction.v1.Item items = 1;
+   * @generated from field: repeated yahoo_auction.v1.GetCategoryItemsResponse.Item items = 1;
    */
-  items: Item[];
+  items: GetCategoryItemsResponse_Item[];
 
   /**
    * total_count は商品の総数です。
@@ -213,9 +213,9 @@ export declare type GetCategoryItemsResponse = Message<"yahoo_auction.v1.GetCate
 export declare const GetCategoryItemsResponseSchema: GenMessage<GetCategoryItemsResponse>;
 
 /**
- * @generated from message yahoo_auction.v1.Item
+ * @generated from message yahoo_auction.v1.GetCategoryItemsResponse.Item
  */
-export declare type Item = Message<"yahoo_auction.v1.Item"> & {
+export declare type GetCategoryItemsResponse_Item = Message<"yahoo_auction.v1.GetCategoryItemsResponse.Item"> & {
   /**
    * auction_id はヤフオクのオークションIDです。
    *
@@ -254,10 +254,10 @@ export declare type Item = Message<"yahoo_auction.v1.Item"> & {
 };
 
 /**
- * Describes the message yahoo_auction.v1.Item.
- * Use `create(ItemSchema)` to create a new message.
+ * Describes the message yahoo_auction.v1.GetCategoryItemsResponse.Item.
+ * Use `create(GetCategoryItemsResponse_ItemSchema)` to create a new message.
  */
-export declare const ItemSchema: GenMessage<Item>;
+export declare const GetCategoryItemsResponse_ItemSchema: GenMessage<GetCategoryItemsResponse_Item>;
 
 /**
  * AuctionStatus はオークションの状態を表します。
