@@ -4,8 +4,10 @@
 
 require 'google/protobuf'
 
+require 'validate/validate_pb'
 
-descriptor_data = "\n$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\"%\n\x11GetAuctionRequest\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\"\xca\x01\n\x12GetAuctionResponse\x12\x1d\n\nauction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\x12#\n\rcurrent_price\x18\x03 \x01(\x03R\x0c\x63urrentPrice\x12!\n\x0cshipping_fee\x18\x04 \x01(\x03R\x0bshippingFee\x12\x37\n\x06status\x18\x05 \x01(\x0e\x32\x1f.yahoo_auction.v1.AuctionStatusR\x06status*\x84\x01\n\rAuctionStatus\x12\x1e\n\x1a\x41UCTION_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15\x41UCTION_STATUS_ACTIVE\x10\x01\x12\x1b\n\x17\x41UCTION_STATUS_FINISHED\x10\x02\x12\x1b\n\x17\x41UCTION_STATUS_CANCELED\x10\x03\x32n\n\x13YahooAuctionService\x12W\n\nGetAuction\x12#.yahoo_auction.v1.GetAuctionRequest\x1a$.yahoo_auction.v1.GetAuctionResponseBDZBgithub.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1b\x06proto3"
+
+descriptor_data = "\n$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\x1a\x17validate/validate.proto\"R\n\x11GetAuctionRequest\x12=\n\nauction_id\x18\x01 \x01(\tB\x1e\xfa\x42\x1br\x19\x10\x08\x18\x0b\x32\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\xca\x01\n\x12GetAuctionResponse\x12\x1d\n\nauction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\x12#\n\rcurrent_price\x18\x03 \x01(\x03R\x0c\x63urrentPrice\x12!\n\x0cshipping_fee\x18\x04 \x01(\x03R\x0bshippingFee\x12\x37\n\x06status\x18\x05 \x01(\x0e\x32\x1f.yahoo_auction.v1.AuctionStatusR\x06status*\x84\x01\n\rAuctionStatus\x12\x1e\n\x1a\x41UCTION_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15\x41UCTION_STATUS_ACTIVE\x10\x01\x12\x1b\n\x17\x41UCTION_STATUS_FINISHED\x10\x02\x12\x1b\n\x17\x41UCTION_STATUS_CANCELED\x10\x03\x32n\n\x13YahooAuctionService\x12W\n\nGetAuction\x12#.yahoo_auction.v1.GetAuctionRequest\x1a$.yahoo_auction.v1.GetAuctionResponseBDZBgithub.com/jo3qma/protobuf/gen/go/yahoo_auction/v1;yahoo_auctionv1b\x06proto3"
 
 pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)

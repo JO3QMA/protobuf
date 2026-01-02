@@ -153,12 +153,12 @@
 <a name="yahoo_auction-v1-GetAuctionRequest"></a>
 
 ### GetAuctionRequest
-GetAuctionRequest はヤフオクのオークションURLを指定するリクエストです。
+GetAuctionRequest はヤフオクのオークションIDを指定するリクエストです。
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| url | [string](#string) |  | url はヤフオクのオークション商品ページのURLです。 |
+| auction_id | [string](#string) |  | auction_id はヤフオクのオークションIDです。 8桁から11桁の英数字です。 |
 
 
 
@@ -211,7 +211,7 @@ AuctionService はヤフオクのオークション情報を取得するサー�
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetAuction | [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest) | [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse) | GetAuction はヤフオクのオークションURLから商品情報を取得します。 |
+| GetAuction | [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest) | [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse) | GetAuction はヤフオクのオークションIDから商品情報を取得します。 |
 
  
 

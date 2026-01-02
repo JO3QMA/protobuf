@@ -16,7 +16,7 @@ module YahooAuction
         self.unmarshal_class_method = :decode
         self.service_name = 'yahoo_auction.v1.YahooAuctionService'
 
-        # GetAuction はヤフオクのオークションURLから商品情報を取得します。
+        # GetAuction はヤフオクのオークションIDから商品情報を取得します。
         rpc :GetAuction, ::YahooAuction::V1::GetAuctionRequest, ::YahooAuction::V1::GetAuctionResponse
       end
 

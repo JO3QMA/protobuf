@@ -40,7 +40,7 @@ const (
 
 // YahooAuctionServiceClient is a client for the yahoo_auction.v1.YahooAuctionService service.
 type YahooAuctionServiceClient interface {
-	// GetAuction はヤフオクのオークションURLから商品情報を取得します。
+	// GetAuction はヤフオクのオークションIDから商品情報を取得します。
 	GetAuction(context.Context, *connect.Request[v1.GetAuctionRequest]) (*connect.Response[v1.GetAuctionResponse], error)
 }
 
@@ -77,7 +77,7 @@ func (c *yahooAuctionServiceClient) GetAuction(ctx context.Context, req *connect
 // YahooAuctionServiceHandler is an implementation of the yahoo_auction.v1.YahooAuctionService
 // service.
 type YahooAuctionServiceHandler interface {
-	// GetAuction はヤフオクのオークションURLから商品情報を取得します。
+	// GetAuction はヤフオクのオークションIDから商品情報を取得します。
 	GetAuction(context.Context, *connect.Request[v1.GetAuctionRequest]) (*connect.Response[v1.GetAuctionResponse], error)
 }
 

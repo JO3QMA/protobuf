@@ -7,6 +7,7 @@
 package yahoo_auctionv1
 
 import (
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -78,11 +79,12 @@ func (AuctionStatus) EnumDescriptor() ([]byte, []int) {
 	return file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP(), []int{0}
 }
 
-// GetAuctionRequest はヤフオクのオークションURLを指定するリクエストです。
+// GetAuctionRequest はヤフオクのオークションIDを指定するリクエストです。
 type GetAuctionRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// url はヤフオクのオークション商品ページのURLです。
-	Url           string `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	// auction_id はヤフオクのオークションIDです。
+	// 8桁から11桁の英数字です。
+	AuctionId     string `protobuf:"bytes,1,opt,name=auction_id,json=auctionId,proto3" json:"auction_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -117,9 +119,9 @@ func (*GetAuctionRequest) Descriptor() ([]byte, []int) {
 	return file_yahoo_auction_v1_yahoo_auction_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetAuctionRequest) GetUrl() string {
+func (x *GetAuctionRequest) GetAuctionId() string {
 	if x != nil {
-		return x.Url
+		return x.AuctionId
 	}
 	return ""
 }
@@ -212,9 +214,10 @@ var File_yahoo_auction_v1_yahoo_auction_proto protoreflect.FileDescriptor
 
 const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"\n" +
-	"$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\"%\n" +
-	"\x11GetAuctionRequest\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"\xca\x01\n" +
+	"$yahoo_auction/v1/yahoo_auction.proto\x12\x10yahoo_auction.v1\x1a\x17validate/validate.proto\"R\n" +
+	"\x11GetAuctionRequest\x12=\n" +
+	"\n" +
+	"auction_id\x18\x01 \x01(\tB\x1e\xfaB\x1br\x19\x10\b\x18\v2\x13^[a-zA-Z0-9]{8,11}$R\tauctionId\"\xca\x01\n" +
 	"\x12GetAuctionResponse\x12\x1d\n" +
 	"\n" +
 	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n" +

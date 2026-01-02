@@ -15,7 +15,7 @@ export declare const YahooAuctionService: {
   readonly typeName: "yahoo_auction.v1.YahooAuctionService",
   readonly methods: {
     /**
-     * GetAuction はヤフオクのオークションURLから商品情報を取得します。
+     * GetAuction はヤフオクのオークションIDから商品情報を取得します。
      *
      * @generated from rpc yahoo_auction.v1.YahooAuctionService.GetAuction
      */

@@ -11,17 +11,18 @@ import type { Message } from "@bufbuild/protobuf";
 export declare const file_yahoo_auction_v1_yahoo_auction: GenFile;
 
 /**
- * GetAuctionRequest はヤフオクのオークションURLを指定するリクエストです。
+ * GetAuctionRequest はヤフオクのオークションIDを指定するリクエストです。
  *
  * @generated from message yahoo_auction.v1.GetAuctionRequest
  */
 export declare type GetAuctionRequest = Message<"yahoo_auction.v1.GetAuctionRequest"> & {
   /**
-   * url はヤフオクのオークション商品ページのURLです。
+   * auction_id はヤフオクのオークションIDです。
+   * 8桁から11桁の英数字です。
    *
-   * @generated from field: string url = 1;
+   * @generated from field: string auction_id = 1;
    */
-  url: string;
+  auctionId: string;
 };
 
 /**
@@ -127,7 +128,7 @@ export declare const AuctionStatusSchema: GenEnum<AuctionStatus>;
  */
 export declare const YahooAuctionService: GenService<{
   /**
-   * GetAuction はヤフオクのオークションURLから商品情報を取得します。
+   * GetAuction はヤフオクのオークションIDから商品情報を取得します。
    *
    * @generated from rpc yahoo_auction.v1.YahooAuctionService.GetAuction
    */
