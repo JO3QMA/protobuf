@@ -60,6 +60,9 @@ message GetAuctionResponse {
 
   // auction_information はオークション情報です。
   AuctionInformation auction_information = 7;
+
+  // description は商品の説明です。
+  string description = 8;
 }
 
 message AuctionInformation {
