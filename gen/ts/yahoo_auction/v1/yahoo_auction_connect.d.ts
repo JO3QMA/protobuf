@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetAuctionRequest, GetAuctionResponse } from "./yahoo_auction_pb.js";
+import { GetAuctionRequest, GetAuctionResponse, GetCategoryItemsRequest, GetCategoryItemsResponse } from "./yahoo_auction_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -23,6 +23,17 @@ export declare const YahooAuctionService: {
       readonly name: "GetAuction",
       readonly I: typeof GetAuctionRequest,
       readonly O: typeof GetAuctionResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。
+     *
+     * @generated from rpc yahoo_auction.v1.YahooAuctionService.GetCategoryItems
+     */
+    readonly getCategoryItems: {
+      readonly name: "GetCategoryItems",
+      readonly I: typeof GetCategoryItemsRequest,
+      readonly O: typeof GetCategoryItemsResponse,
       readonly kind: MethodKind.Unary,
     },
   }

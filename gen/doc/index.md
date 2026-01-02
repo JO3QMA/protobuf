@@ -17,6 +17,9 @@
     - [AuctionInformation](#yahoo_auction-v1-AuctionInformation)
     - [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest)
     - [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse)
+    - [GetCategoryItemsRequest](#yahoo_auction-v1-GetCategoryItemsRequest)
+    - [GetCategoryItemsResponse](#yahoo_auction-v1-GetCategoryItemsResponse)
+    - [GetCategoryItemsResponse.Item](#yahoo_auction-v1-GetCategoryItemsResponse-Item)
   
     - [AuctionStatus](#yahoo_auction-v1-AuctionStatus)
   
@@ -208,6 +211,57 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 
 
 
+
+<a name="yahoo_auction-v1-GetCategoryItemsRequest"></a>
+
+### GetCategoryItemsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_id | [string](#string) |  | category_id はヤフオクのカテゴリIDです。 |
+| page | [int64](#int64) |  | page はページ番号です。 |
+
+
+
+
+
+
+<a name="yahoo_auction-v1-GetCategoryItemsResponse"></a>
+
+### GetCategoryItemsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [GetCategoryItemsResponse.Item](#yahoo_auction-v1-GetCategoryItemsResponse-Item) | repeated | items は商品のリストです。 |
+| total_count | [int64](#int64) |  | total_count は商品の総数です。 |
+
+
+
+
+
+
+<a name="yahoo_auction-v1-GetCategoryItemsResponse-Item"></a>
+
+### GetCategoryItemsResponse.Item
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| auction_id | [string](#string) |  | auction_id はヤフオクのオークションIDです。 |
+| title | [string](#string) |  | title は商品のタイトル（商品名）です。 |
+| current_price | [int64](#int64) |  | current_price は現在価格（単位は通常「円」）。 サーバ側では整数の金額（例: 1000 = 1000円）として扱います。 |
+| immediate_price | [int64](#int64) |  | 即決価格 |
+| bid_count | [int64](#int64) |  | 入札数 |
+
+
+
+
+
  
 
 
@@ -237,6 +291,7 @@ AuctionService はヤフオクのオークション情報を取得するサー�
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetAuction | [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest) | [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse) | GetAuction はヤフオクのオークションIDから商品情報を取得します。 |
+| GetCategoryItems | [GetCategoryItemsRequest](#yahoo_auction-v1-GetCategoryItemsRequest) | [GetCategoryItemsResponse](#yahoo_auction-v1-GetCategoryItemsResponse) | GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。 |
 
  
 

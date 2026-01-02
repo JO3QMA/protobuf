@@ -18,6 +18,8 @@ module YahooAuction
 
         # GetAuction はヤフオクのオークションIDから商品情報を取得します。
         rpc :GetAuction, ::YahooAuction::V1::GetAuctionRequest, ::YahooAuction::V1::GetAuctionResponse
+        # GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。
+        rpc :GetCategoryItems, ::YahooAuction::V1::GetCategoryItemsRequest, ::YahooAuction::V1::GetCategoryItemsResponse
       end
 
       Stub = Service.rpc_stub_class
