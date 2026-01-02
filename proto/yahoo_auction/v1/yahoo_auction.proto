@@ -58,3 +58,29 @@ message GetAuctionResponse {
   repeated string images = 6;
 
 }
+
+message AuctionInformation {
+  // AuctionID はヤフオクのオークションIDです。
+  string auction_id = 1;
+
+  // start_price は始値（単位は通常「円」）。
+  int64 start_price = 2;
+
+  // start_time は開始時間です。
+  google.protobuf.Timestamp start_time = 3;
+
+  // end_time は終了時間です。
+  google.protobuf.Timestamp end_time = 4;
+
+  // 早期終了
+  bool early_end = 5;
+
+  // 自動延長
+  bool auto_extension = 6;
+
+  // 返品の可否
+  bool returnable = 7;
+
+  // 返品の可否(詳細)
+  string returnable_detail = 8;
+}
