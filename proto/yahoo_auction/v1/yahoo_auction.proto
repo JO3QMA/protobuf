@@ -106,24 +106,23 @@ message GetCategoryItemsResponse {
   // items は商品のリストです。
   repeated Item items = 1;
 
+  message Item {
+    // auction_id はヤフオクのオークションIDです。
+    string auction_id = 1;
+  
+    // title は商品のタイトル（商品名）です。
+    string title = 2;
+  
+    // current_price は現在価格（単位は通常「円」）。
+    // サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
+    int64 current_price = 3;
+  
+    // 即決価格
+    int64 immediate_price = 4;
+  
+    // 入札数
+    int64 bid_count = 6;
+  }
   // total_count は商品の総数です。
   int64 total_count = 2;
-}
-
-message Item {
-  // auction_id はヤフオクのオークションIDです。
-  string auction_id = 1;
-
-  // title は商品のタイトル（商品名）です。
-  string title = 2;
-
-  // current_price は現在価格（単位は通常「円」）。
-  // サーバ側では整数の金額（例: 1000 = 1000円）として扱います。
-  int64 current_price = 3;
-
-  // 即決価格
-  int64 immediate_price = 4;
-
-  // 入札数
-  int64 bid_count = 6;
 }
