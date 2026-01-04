@@ -50,15 +50,25 @@
 <a name="eheya-v1-Property"></a>
 
 ### Property
-Property details (Placeholder based on likely search result fields)
+物件
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| address | [string](#string) |  |  |
-| price | [string](#string) |  | Rent |
+| id | [string](#string) |  | 物件ID |
+| name | [string](#string) |  | 物件名 |
+| building_age | [int32](#int32) |  | 築年数 |
+| total_floors | [int32](#int32) |  | n階建て |
+| nearest_station | [string](#string) |  | 最寄り駅 |
+| address | [string](#string) |  | 住所 |
+| floor | [int32](#int32) |  | 階層 |
+| rent | [string](#string) |  | 家賃 |
+| management_fee | [string](#string) |  | 管理費 |
+| deposit | [string](#string) |  | 敷金 |
+| key_money | [string](#string) |  | 礼金 |
+| house_plan | [HousePlan](#eheya-v1-HousePlan) |  | 間取り |
+| exclusive_area | [string](#string) |  | 専有面積 |
+| updated_at | [string](#string) |  | 最終更新日時 |
 
 
 
@@ -122,7 +132,7 @@ Response message for Search (Placeholder)
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| properties | [Property](#eheya-v1-Property) | repeated | Add pagination info if needed |
+| properties | [Property](#eheya-v1-Property) | repeated | 物件リスト |
 
 
 

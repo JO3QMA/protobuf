@@ -492,8 +492,9 @@ func (x *SearchRequest) GetIsDkSelect() bool {
 
 // Response message for Search (Placeholder)
 type SearchResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Properties    []*Property            `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"` // Add pagination info if needed
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// 物件リスト
+	Properties    []*Property `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -535,13 +536,37 @@ func (x *SearchResponse) GetProperties() []*Property {
 	return nil
 }
 
-// Property details (Placeholder based on likely search result fields)
+// 物件
 type Property struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
-	Price         string                 `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"` // Rent
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// 物件ID
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// 物件名
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// 築年数
+	BuildingAge int32 `protobuf:"varint,3,opt,name=building_age,json=buildingAge,proto3" json:"building_age,omitempty"`
+	// n階建て
+	TotalFloors int32 `protobuf:"varint,4,opt,name=total_floors,json=totalFloors,proto3" json:"total_floors,omitempty"`
+	// 最寄り駅
+	NearestStation string `protobuf:"bytes,5,opt,name=nearest_station,json=nearestStation,proto3" json:"nearest_station,omitempty"`
+	// 住所
+	Address string `protobuf:"bytes,6,opt,name=address,proto3" json:"address,omitempty"`
+	// 階層
+	Floor int32 `protobuf:"varint,7,opt,name=floor,proto3" json:"floor,omitempty"`
+	// 家賃
+	Rent string `protobuf:"bytes,8,opt,name=rent,proto3" json:"rent,omitempty"`
+	// 管理費
+	ManagementFee string `protobuf:"bytes,9,opt,name=management_fee,json=managementFee,proto3" json:"management_fee,omitempty"`
+	// 敷金
+	Deposit string `protobuf:"bytes,10,opt,name=deposit,proto3" json:"deposit,omitempty"`
+	// 礼金
+	KeyMoney string `protobuf:"bytes,11,opt,name=key_money,json=keyMoney,proto3" json:"key_money,omitempty"`
+	// 間取り
+	HousePlan HousePlan `protobuf:"varint,12,opt,name=house_plan,json=housePlan,proto3,enum=eheya.v1.HousePlan" json:"house_plan,omitempty"`
+	// 専有面積
+	ExclusiveArea string `protobuf:"bytes,13,opt,name=exclusive_area,json=exclusiveArea,proto3" json:"exclusive_area,omitempty"`
+	// 最終更新日時
+	UpdatedAt     string `protobuf:"bytes,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -590,6 +615,27 @@ func (x *Property) GetName() string {
 	return ""
 }
 
+func (x *Property) GetBuildingAge() int32 {
+	if x != nil {
+		return x.BuildingAge
+	}
+	return 0
+}
+
+func (x *Property) GetTotalFloors() int32 {
+	if x != nil {
+		return x.TotalFloors
+	}
+	return 0
+}
+
+func (x *Property) GetNearestStation() string {
+	if x != nil {
+		return x.NearestStation
+	}
+	return ""
+}
+
 func (x *Property) GetAddress() string {
 	if x != nil {
 		return x.Address
@@ -597,9 +643,58 @@ func (x *Property) GetAddress() string {
 	return ""
 }
 
-func (x *Property) GetPrice() string {
+func (x *Property) GetFloor() int32 {
 	if x != nil {
-		return x.Price
+		return x.Floor
+	}
+	return 0
+}
+
+func (x *Property) GetRent() string {
+	if x != nil {
+		return x.Rent
+	}
+	return ""
+}
+
+func (x *Property) GetManagementFee() string {
+	if x != nil {
+		return x.ManagementFee
+	}
+	return ""
+}
+
+func (x *Property) GetDeposit() string {
+	if x != nil {
+		return x.Deposit
+	}
+	return ""
+}
+
+func (x *Property) GetKeyMoney() string {
+	if x != nil {
+		return x.KeyMoney
+	}
+	return ""
+}
+
+func (x *Property) GetHousePlan() HousePlan {
+	if x != nil {
+		return x.HousePlan
+	}
+	return HousePlan_HOUSE_PLAN_UNSPECIFIED
+}
+
+func (x *Property) GetExclusiveArea() string {
+	if x != nil {
+		return x.ExclusiveArea
+	}
+	return ""
+}
+
+func (x *Property) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
 	}
 	return ""
 }
@@ -650,12 +745,25 @@ const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\x0eSearchResponse\x122\n" +
 	"\n" +
 	"properties\x18\x01 \x03(\v2\x12.eheya.v1.PropertyR\n" +
-	"properties\"^\n" +
+	"properties\"\xb9\x03\n" +
 	"\bProperty\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
-	"\aaddress\x18\x03 \x01(\tR\aaddress\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\tR\x05price*\xda\x02\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
+	"\fbuilding_age\x18\x03 \x01(\x05R\vbuildingAge\x12!\n" +
+	"\ftotal_floors\x18\x04 \x01(\x05R\vtotalFloors\x12'\n" +
+	"\x0fnearest_station\x18\x05 \x01(\tR\x0enearestStation\x12\x18\n" +
+	"\aaddress\x18\x06 \x01(\tR\aaddress\x12\x14\n" +
+	"\x05floor\x18\a \x01(\x05R\x05floor\x12\x12\n" +
+	"\x04rent\x18\b \x01(\tR\x04rent\x12%\n" +
+	"\x0emanagement_fee\x18\t \x01(\tR\rmanagementFee\x12\x18\n" +
+	"\adeposit\x18\n" +
+	" \x01(\tR\adeposit\x12\x1b\n" +
+	"\tkey_money\x18\v \x01(\tR\bkeyMoney\x122\n" +
+	"\n" +
+	"house_plan\x18\f \x01(\x0e2\x13.eheya.v1.HousePlanR\thousePlan\x12%\n" +
+	"\x0eexclusive_area\x18\r \x01(\tR\rexclusiveArea\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x0e \x01(\tR\tupdatedAt*\xda\x02\n" +
 	"\tHousePlan\x12\x1a\n" +
 	"\x16HOUSE_PLAN_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10HOUSE_PLAN_ONE_R\x10\x01\x12\x14\n" +
@@ -709,13 +817,14 @@ var file_eheya_v1_eheya_service_proto_depIdxs = []int32{
 	1, // 1: eheya.v1.SearchRequest.sort_type:type_name -> eheya.v1.SortType
 	2, // 2: eheya.v1.SearchRequest.sort_direct:type_name -> eheya.v1.SortDirection
 	5, // 3: eheya.v1.SearchResponse.properties:type_name -> eheya.v1.Property
-	3, // 4: eheya.v1.EheyaService.Search:input_type -> eheya.v1.SearchRequest
-	4, // 5: eheya.v1.EheyaService.Search:output_type -> eheya.v1.SearchResponse
-	5, // [5:6] is the sub-list for method output_type
-	4, // [4:5] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0, // 4: eheya.v1.Property.house_plan:type_name -> eheya.v1.HousePlan
+	3, // 5: eheya.v1.EheyaService.Search:input_type -> eheya.v1.SearchRequest
+	4, // 6: eheya.v1.EheyaService.Search:output_type -> eheya.v1.SearchResponse
+	6, // [6:7] is the sub-list for method output_type
+	5, // [5:6] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_eheya_v1_eheya_service_proto_init() }

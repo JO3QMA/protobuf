@@ -213,7 +213,7 @@ export declare const SearchRequestSchema: GenMessage<SearchRequest>;
  */
 export declare type SearchResponse = Message<"eheya.v1.SearchResponse"> & {
   /**
-   * Add pagination info if needed
+   * 物件リスト
    *
    * @generated from field: repeated eheya.v1.Property properties = 1;
    */
@@ -227,32 +227,108 @@ export declare type SearchResponse = Message<"eheya.v1.SearchResponse"> & {
 export declare const SearchResponseSchema: GenMessage<SearchResponse>;
 
 /**
- * Property details (Placeholder based on likely search result fields)
+ * 物件
  *
  * @generated from message eheya.v1.Property
  */
 export declare type Property = Message<"eheya.v1.Property"> & {
   /**
+   * 物件ID
+   *
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
+   * 物件名
+   *
    * @generated from field: string name = 2;
    */
   name: string;
 
   /**
-   * @generated from field: string address = 3;
+   * 築年数
+   *
+   * @generated from field: int32 building_age = 3;
+   */
+  buildingAge: number;
+
+  /**
+   * n階建て
+   *
+   * @generated from field: int32 total_floors = 4;
+   */
+  totalFloors: number;
+
+  /**
+   * 最寄り駅
+   *
+   * @generated from field: string nearest_station = 5;
+   */
+  nearestStation: string;
+
+  /**
+   * 住所
+   *
+   * @generated from field: string address = 6;
    */
   address: string;
 
   /**
-   * Rent
+   * 階層
    *
-   * @generated from field: string price = 4;
+   * @generated from field: int32 floor = 7;
    */
-  price: string;
+  floor: number;
+
+  /**
+   * 家賃
+   *
+   * @generated from field: string rent = 8;
+   */
+  rent: string;
+
+  /**
+   * 管理費
+   *
+   * @generated from field: string management_fee = 9;
+   */
+  managementFee: string;
+
+  /**
+   * 敷金
+   *
+   * @generated from field: string deposit = 10;
+   */
+  deposit: string;
+
+  /**
+   * 礼金
+   *
+   * @generated from field: string key_money = 11;
+   */
+  keyMoney: string;
+
+  /**
+   * 間取り
+   *
+   * @generated from field: eheya.v1.HousePlan house_plan = 12;
+   */
+  housePlan: HousePlan;
+
+  /**
+   * 専有面積
+   *
+   * @generated from field: string exclusive_area = 13;
+   */
+  exclusiveArea: string;
+
+  /**
+   * 最終更新日時
+   *
+   * @generated from field: string updated_at = 14;
+   */
+  updatedAt: string;
 };
 
 /**
