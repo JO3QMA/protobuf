@@ -455,6 +455,8 @@ type GetCategoryItemsResponse_Item struct {
 	CurrentPrice int64 `protobuf:"varint,3,opt,name=current_price,json=currentPrice,proto3" json:"current_price,omitempty"`
 	// 即決価格
 	ImmediatePrice int64 `protobuf:"varint,4,opt,name=immediate_price,json=immediatePrice,proto3" json:"immediate_price,omitempty"`
+	// image は商品のサムネイル画像URLです。
+	Image string `protobuf:"bytes,5,opt,name=image,proto3" json:"image,omitempty"`
 	// 入札数
 	BidCount      int64 `protobuf:"varint,6,opt,name=bid_count,json=bidCount,proto3" json:"bid_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -519,6 +521,13 @@ func (x *GetCategoryItemsResponse_Item) GetImmediatePrice() int64 {
 	return 0
 }
 
+func (x *GetCategoryItemsResponse_Item) GetImage() string {
+	if x != nil {
+		return x.Image
+	}
+	return ""
+}
+
 func (x *GetCategoryItemsResponse_Item) GetBidCount() int64 {
 	if x != nil {
 		return x.BidCount
@@ -560,17 +569,18 @@ const file_yahoo_auction_v1_yahoo_auction_proto_rawDesc = "" +
 	"\x17GetCategoryItemsRequest\x12\x1f\n" +
 	"\vcategory_id\x18\x01 \x01(\tR\n" +
 	"categoryId\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\"\xab\x02\n" +
+	"\x04page\x18\x02 \x01(\x03R\x04page\"\xc1\x02\n" +
 	"\x18GetCategoryItemsResponse\x12E\n" +
 	"\x05items\x18\x01 \x03(\v2/.yahoo_auction.v1.GetCategoryItemsResponse.ItemR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x03R\n" +
-	"totalCount\x1a\xa6\x01\n" +
+	"totalCount\x1a\xbc\x01\n" +
 	"\x04Item\x12\x1d\n" +
 	"\n" +
 	"auction_id\x18\x01 \x01(\tR\tauctionId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12#\n" +
 	"\rcurrent_price\x18\x03 \x01(\x03R\fcurrentPrice\x12'\n" +
-	"\x0fimmediate_price\x18\x04 \x01(\x03R\x0eimmediatePrice\x12\x1b\n" +
+	"\x0fimmediate_price\x18\x04 \x01(\x03R\x0eimmediatePrice\x12\x14\n" +
+	"\x05image\x18\x05 \x01(\tR\x05image\x12\x1b\n" +
 	"\tbid_count\x18\x06 \x01(\x03R\bbidCount*\x84\x01\n" +
 	"\rAuctionStatus\x12\x1e\n" +
 	"\x1aAUCTION_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +
