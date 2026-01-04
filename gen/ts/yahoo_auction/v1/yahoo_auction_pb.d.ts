@@ -246,6 +246,13 @@ export declare type GetCategoryItemsResponse_Item = Message<"yahoo_auction.v1.Ge
   immediatePrice: bigint;
 
   /**
+   * image は商品のサムネイル画像URLです。
+   *
+   * @generated from field: string image = 5;
+   */
+  image: string;
+
+  /**
    * 入札数
    *
    * @generated from field: int64 bid_count = 6;
