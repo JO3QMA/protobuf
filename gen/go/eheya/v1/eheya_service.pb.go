@@ -680,7 +680,7 @@ const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\x12SORT_DIRECTION_ASC\x10\x01\x12\x17\n" +
 	"\x13SORT_DIRECTION_DESC\x10\x022K\n" +
 	"\fEheyaService\x12;\n" +
-	"\x06Search\x12\x17.eheya.v1.SearchRequest\x1a\x18.eheya.v1.SearchResponseB:Z8github.com/jo3qma/works/protobuf/gen/go/eheya/v1;eheyav1b\x06proto3"
+	"\x06Search\x12\x17.eheya.v1.SearchRequest\x1a\x18.eheya.v1.SearchResponseB4Z2github.com/jo3qma/protobuf/gen/go/eheya/v1;eheyav1b\x06proto3"
 
 var (
 	file_eheya_v1_eheya_service_proto_rawDescOnce sync.Once

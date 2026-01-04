@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1 "github.com/jo3qma/works/protobuf/gen/go/eheya/v1"
+	v1 "github.com/jo3qma/protobuf/gen/go/eheya/v1"
 	http "net/http"
 	strings "strings"
 )
