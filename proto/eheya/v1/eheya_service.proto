@@ -57,17 +57,53 @@ message SearchRequest {
 
 // Response message for Search (Placeholder)
 message SearchResponse {
+  // 物件リスト
   repeated Property properties = 1;
-  // Add pagination info if needed
 }
 
-// Property details (Placeholder based on likely search result fields)
+// 物件
 message Property {
+  // 物件ID
   string id = 1;
+
+  // 物件名
   string name = 2;
-  string address = 3;
-  string price = 4; // Rent
-  // Add more fields as identified
+  
+  // 築年数
+  int32 building_age = 3;
+
+  // n階建て
+  int32 total_floors = 4;
+
+  // 最寄り駅
+  string nearest_station = 5;
+
+  // 住所
+  string address = 6;
+
+  // 階層
+  int32 floor = 7;
+  
+  // 家賃
+  string rent = 8;
+
+  // 管理費
+  string management_fee = 9;
+
+  // 敷金
+  string deposit = 10;
+
+  // 礼金
+  string key_money = 11;
+
+  // 間取り
+  HousePlan house_plan = 12;
+
+  // 専有面積
+  string exclusive_area = 13;
+
+  // 最終更新日時
+  string updated_at = 14;
 }
 
 // HousePlan enum
