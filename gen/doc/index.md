@@ -3,6 +3,17 @@
 
 ## Table of Contents
 
+- [eheya/v1/eheya_service.proto](#eheya_v1_eheya_service-proto)
+    - [Property](#eheya-v1-Property)
+    - [SearchRequest](#eheya-v1-SearchRequest)
+    - [SearchResponse](#eheya-v1-SearchResponse)
+  
+    - [HousePlan](#eheya-v1-HousePlan)
+    - [SortDirection](#eheya-v1-SortDirection)
+    - [SortType](#eheya-v1-SortType)
+  
+    - [EheyaService](#eheya-v1-EheyaService)
+  
 - [hello/v1/hello.proto](#hello_v1_hello-proto)
     - [GetUserRequest](#hello-v1-GetUserRequest)
     - [GetUserResponse](#hello-v1-GetUserResponse)
@@ -26,6 +37,163 @@
     - [YahooAuctionService](#yahoo_auction-v1-YahooAuctionService)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="eheya_v1_eheya_service-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## eheya/v1/eheya_service.proto
+
+
+
+<a name="eheya-v1-Property"></a>
+
+### Property
+Property details (Placeholder based on likely search result fields)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| address | [string](#string) |  |  |
+| price | [string](#string) |  | Rent |
+
+
+
+
+
+
+<a name="eheya-v1-SearchRequest"></a>
+
+### SearchRequest
+Request message for Search
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_slug | [string](#string) |  | Path parameters (required)
+
+e.g., &#34;dk-select&#34; |
+| prefecture_slug | [string](#string) |  | e.g., &#34;osaka&#34; |
+| city_id | [string](#string) |  | e.g., &#34;27115&#34; |
+| house_plan | [HousePlan](#eheya-v1-HousePlan) | repeated | Query parameters |
+| dk_select | [bool](#bool) |  |  |
+| sort_type | [SortType](#eheya-v1-SortType) |  |  |
+| sort_direct | [SortDirection](#eheya-v1-SortDirection) |  |  |
+| price_min | [string](#string) |  | Detail filters (detail.*)
+
+e.g., &#34;YEN_60000&#34; |
+| price_max | [string](#string) |  | e.g., &#34;YEN_80000&#34; |
+| include_manage_cost | [bool](#bool) |  |  |
+| is_deposit_zero | [bool](#bool) |  |  |
+| is_key_money_zero | [bool](#bool) |  |  |
+| use_part_area_min | [string](#string) |  | e.g., &#34;SQUARE_METERS_30&#34; |
+| use_part_area_max | [string](#string) |  | e.g., &#34;SQUARE_METERS_50&#34; |
+| walk_from_station_minutes | [string](#string) |  | e.g., &#34;LESS_10_MINUTES&#34; |
+| include_bus_minutes | [bool](#bool) |  |  |
+| age | [string](#string) |  | e.g., &#34;LESS_10&#34;, &#34;NEW_BUILD&#34; |
+| is_separated_bath_and_toilet | [bool](#bool) |  | Boolean flags (Preferences) |
+| is_over_second_floor | [bool](#bool) |  |  |
+| has_parking | [bool](#bool) |  |  |
+| has_air_conditioner | [bool](#bool) |  |  |
+| has_washing_machine_place | [bool](#bool) |  |  |
+| is_free_wash_room | [bool](#bool) |  |  |
+| is_pet_negotiable | [bool](#bool) |  |  |
+| is_pet_friendly | [bool](#bool) |  |  |
+| has_autolock | [bool](#bool) |  |  |
+| has_over_double_cooking_stove | [bool](#bool) |  |  |
+| has_monitor_autolock | [bool](#bool) |  |  |
+| has_warm_water_washing_toilet_seat | [bool](#bool) |  |  |
+| is_city_gas | [bool](#bool) |  |  |
+| is_dk_select | [bool](#bool) |  | Duplicate of dk_select? Kept for completeness with detail.* |
+
+
+
+
+
+
+<a name="eheya-v1-SearchResponse"></a>
+
+### SearchResponse
+Response message for Search (Placeholder)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| properties | [Property](#eheya-v1-Property) | repeated | Add pagination info if needed |
+
+
+
+
+
+ 
+
+
+<a name="eheya-v1-HousePlan"></a>
+
+### HousePlan
+HousePlan enum
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| HOUSE_PLAN_UNSPECIFIED | 0 |  |
+| HOUSE_PLAN_ONE_R | 1 | 1R |
+| HOUSE_PLAN_ONE_K | 2 | 1K |
+| HOUSE_PLAN_ONE_DK | 3 | 1DK |
+| HOUSE_PLAN_ONE_LDK | 4 | 1LDK |
+| HOUSE_PLAN_TWO_K | 5 | 2K |
+| HOUSE_PLAN_TWO_DK | 6 | 2DK |
+| HOUSE_PLAN_TWO_LDK | 7 | 2LDK |
+| HOUSE_PLAN_THREE_K | 8 | 3K |
+| HOUSE_PLAN_THREE_DK | 9 | 3DK |
+| HOUSE_PLAN_THREE_LDK | 10 | 3LDK |
+| HOUSE_PLAN_FOUR_K | 11 | 4K |
+| HOUSE_PLAN_FOUR_DK | 12 | 4DK |
+| HOUSE_PLAN_FOUR_LDK | 13 | 4LDK |
+
+
+
+<a name="eheya-v1-SortDirection"></a>
+
+### SortDirection
+SortDirection enum
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SORT_DIRECTION_UNSPECIFIED | 0 |  |
+| SORT_DIRECTION_ASC | 1 |  |
+| SORT_DIRECTION_DESC | 2 |  |
+
+
+
+<a name="eheya-v1-SortType"></a>
+
+### SortType
+SortType enum
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SORT_TYPE_UNSPECIFIED | 0 |  |
+| SORT_TYPE_RECOMMENDED_OF_VACANCY | 1 | Add others if found |
+
+
+ 
+
+ 
+
+
+<a name="eheya-v1-EheyaService"></a>
+
+### EheyaService
+EheyaService provides search functionality for eheya.net
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Search | [SearchRequest](#eheya-v1-SearchRequest) | [SearchResponse](#eheya-v1-SearchResponse) | Search properties based on various conditions |
+
+ 
 
 
 
