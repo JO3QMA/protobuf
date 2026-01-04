@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package eheya.v1;
 
-option go_package = "github.com/jo3qma/works/protobuf/gen/go/eheya/v1;eheyav1";
+option go_package = "github.com/jo3qma/protobuf/gen/go/eheya/v1;eheyav1";
 
 // EheyaService provides search functionality for eheya.net
 service EheyaService {
