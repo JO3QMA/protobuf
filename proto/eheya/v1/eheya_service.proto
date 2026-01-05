@@ -7,11 +7,11 @@ option go_package = "github.com/jo3qma/protobuf/gen/go/eheya/v1;eheyav1";
 // EheyaService provides search functionality for eheya.net
 service EheyaService {
   // Search properties based on various conditions
-  rpc DKSelectSearch(DKSelectSearchRequest) returns (DKSelectSearchResponse);
+  rpc Search(SearchRequest) returns (SearchResponse);
 }
 
 // Request message for Search
-message DKSelectSearchRequest {
+message SearchRequest {
   // Path parameters (required)
   string category_slug = 1; // e.g., "dk-select"
   string prefecture_slug = 2; // e.g., "osaka"
@@ -56,13 +56,13 @@ message DKSelectSearchRequest {
 }
 
 // Response message for Search (Placeholder)
-message DKSelectSearchResponse {
+message SearchResponse {
   // 物件リスト
-  repeated DKSelectProperty properties = 1;
+  repeated Property properties = 1;
 }
 
 // 物件
-message DKSelectProperty {
+message Property {
   // 物件ID
   string id = 1;
 
