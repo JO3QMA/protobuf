@@ -218,6 +218,13 @@ export declare type SearchResponse = Message<"eheya.v1.SearchResponse"> & {
    * @generated from field: repeated eheya.v1.Property properties = 1;
    */
   properties: Property[];
+
+  /**
+   * 物件数
+   *
+   * @generated from field: int32 total_count = 2;
+   */
+  totalCount: number;
 };
 
 /**

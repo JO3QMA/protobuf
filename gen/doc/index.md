@@ -133,6 +133,7 @@ Response message for Search (Placeholder)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | properties | [Property](#eheya-v1-Property) | repeated | 物件リスト |
+| total_count | [int32](#int32) |  | 物件数 |
 
 
 

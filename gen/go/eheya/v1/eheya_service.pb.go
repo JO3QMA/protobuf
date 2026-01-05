@@ -494,7 +494,9 @@ func (x *SearchRequest) GetIsDkSelect() bool {
 type SearchResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 物件リスト
-	Properties    []*Property `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
+	Properties []*Property `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
+	// 物件数
+	TotalCount    int32 `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -534,6 +536,13 @@ func (x *SearchResponse) GetProperties() []*Property {
 		return x.Properties
 	}
 	return nil
+}
+
+func (x *SearchResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
 }
 
 // 物件
@@ -741,11 +750,13 @@ const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\"has_warm_water_washing_toilet_seat\x18\x1d \x01(\bR\x1dhasWarmWaterWashingToiletSeat\x12\x1e\n" +
 	"\vis_city_gas\x18\x1e \x01(\bR\tisCityGas\x12 \n" +
 	"\fis_dk_select\x18\x1f \x01(\bR\n" +
-	"isDkSelect\"D\n" +
+	"isDkSelect\"e\n" +
 	"\x0eSearchResponse\x122\n" +
 	"\n" +
 	"properties\x18\x01 \x03(\v2\x12.eheya.v1.PropertyR\n" +
-	"properties\"\xb9\x03\n" +
+	"properties\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\"\xb9\x03\n" +
 	"\bProperty\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
