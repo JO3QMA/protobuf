@@ -59,6 +59,9 @@ message SearchRequest {
 message SearchResponse {
   // 物件リスト
   repeated Property properties = 1;
+
+  // 物件数
+  int32 total_count = 2;
 }
 
 // 物件
