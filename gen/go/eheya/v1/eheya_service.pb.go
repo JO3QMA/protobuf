@@ -202,7 +202,7 @@ func (SortDirection) EnumDescriptor() ([]byte, []int) {
 }
 
 // Request message for Search
-type SearchRequest struct {
+type DKSelectSearchRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Path parameters (required)
 	CategorySlug   string `protobuf:"bytes,1,opt,name=category_slug,json=categorySlug,proto3" json:"category_slug,omitempty"`       // e.g., "dk-select"
@@ -243,20 +243,20 @@ type SearchRequest struct {
 	sizeCache                     protoimpl.SizeCache
 }
 
-func (x *SearchRequest) Reset() {
-	*x = SearchRequest{}
+func (x *DKSelectSearchRequest) Reset() {
+	*x = DKSelectSearchRequest{}
 	mi := &file_eheya_v1_eheya_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SearchRequest) String() string {
+func (x *DKSelectSearchRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SearchRequest) ProtoMessage() {}
+func (*DKSelectSearchRequest) ProtoMessage() {}
 
-func (x *SearchRequest) ProtoReflect() protoreflect.Message {
+func (x *DKSelectSearchRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_eheya_v1_eheya_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -268,222 +268,222 @@ func (x *SearchRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SearchRequest.ProtoReflect.Descriptor instead.
-func (*SearchRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DKSelectSearchRequest.ProtoReflect.Descriptor instead.
+func (*DKSelectSearchRequest) Descriptor() ([]byte, []int) {
 	return file_eheya_v1_eheya_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchRequest) GetCategorySlug() string {
+func (x *DKSelectSearchRequest) GetCategorySlug() string {
 	if x != nil {
 		return x.CategorySlug
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetPrefectureSlug() string {
+func (x *DKSelectSearchRequest) GetPrefectureSlug() string {
 	if x != nil {
 		return x.PrefectureSlug
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetCityId() string {
+func (x *DKSelectSearchRequest) GetCityId() string {
 	if x != nil {
 		return x.CityId
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetHousePlan() []HousePlan {
+func (x *DKSelectSearchRequest) GetHousePlan() []HousePlan {
 	if x != nil {
 		return x.HousePlan
 	}
 	return nil
 }
 
-func (x *SearchRequest) GetDkSelect() bool {
+func (x *DKSelectSearchRequest) GetDkSelect() bool {
 	if x != nil {
 		return x.DkSelect
 	}
 	return false
 }
 
-func (x *SearchRequest) GetSortType() SortType {
+func (x *DKSelectSearchRequest) GetSortType() SortType {
 	if x != nil {
 		return x.SortType
 	}
 	return SortType_SORT_TYPE_UNSPECIFIED
 }
 
-func (x *SearchRequest) GetSortDirect() SortDirection {
+func (x *DKSelectSearchRequest) GetSortDirect() SortDirection {
 	if x != nil {
 		return x.SortDirect
 	}
 	return SortDirection_SORT_DIRECTION_UNSPECIFIED
 }
 
-func (x *SearchRequest) GetPriceMin() string {
+func (x *DKSelectSearchRequest) GetPriceMin() string {
 	if x != nil {
 		return x.PriceMin
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetPriceMax() string {
+func (x *DKSelectSearchRequest) GetPriceMax() string {
 	if x != nil {
 		return x.PriceMax
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetIncludeManageCost() bool {
+func (x *DKSelectSearchRequest) GetIncludeManageCost() bool {
 	if x != nil {
 		return x.IncludeManageCost
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsDepositZero() bool {
+func (x *DKSelectSearchRequest) GetIsDepositZero() bool {
 	if x != nil {
 		return x.IsDepositZero
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsKeyMoneyZero() bool {
+func (x *DKSelectSearchRequest) GetIsKeyMoneyZero() bool {
 	if x != nil {
 		return x.IsKeyMoneyZero
 	}
 	return false
 }
 
-func (x *SearchRequest) GetUsePartAreaMin() string {
+func (x *DKSelectSearchRequest) GetUsePartAreaMin() string {
 	if x != nil {
 		return x.UsePartAreaMin
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetUsePartAreaMax() string {
+func (x *DKSelectSearchRequest) GetUsePartAreaMax() string {
 	if x != nil {
 		return x.UsePartAreaMax
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetWalkFromStationMinutes() string {
+func (x *DKSelectSearchRequest) GetWalkFromStationMinutes() string {
 	if x != nil {
 		return x.WalkFromStationMinutes
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetIncludeBusMinutes() bool {
+func (x *DKSelectSearchRequest) GetIncludeBusMinutes() bool {
 	if x != nil {
 		return x.IncludeBusMinutes
 	}
 	return false
 }
 
-func (x *SearchRequest) GetAge() string {
+func (x *DKSelectSearchRequest) GetAge() string {
 	if x != nil {
 		return x.Age
 	}
 	return ""
 }
 
-func (x *SearchRequest) GetIsSeparatedBathAndToilet() bool {
+func (x *DKSelectSearchRequest) GetIsSeparatedBathAndToilet() bool {
 	if x != nil {
 		return x.IsSeparatedBathAndToilet
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsOverSecondFloor() bool {
+func (x *DKSelectSearchRequest) GetIsOverSecondFloor() bool {
 	if x != nil {
 		return x.IsOverSecondFloor
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasParking() bool {
+func (x *DKSelectSearchRequest) GetHasParking() bool {
 	if x != nil {
 		return x.HasParking
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasAirConditioner() bool {
+func (x *DKSelectSearchRequest) GetHasAirConditioner() bool {
 	if x != nil {
 		return x.HasAirConditioner
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasWashingMachinePlace() bool {
+func (x *DKSelectSearchRequest) GetHasWashingMachinePlace() bool {
 	if x != nil {
 		return x.HasWashingMachinePlace
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsFreeWashRoom() bool {
+func (x *DKSelectSearchRequest) GetIsFreeWashRoom() bool {
 	if x != nil {
 		return x.IsFreeWashRoom
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsPetNegotiable() bool {
+func (x *DKSelectSearchRequest) GetIsPetNegotiable() bool {
 	if x != nil {
 		return x.IsPetNegotiable
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsPetFriendly() bool {
+func (x *DKSelectSearchRequest) GetIsPetFriendly() bool {
 	if x != nil {
 		return x.IsPetFriendly
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasAutolock() bool {
+func (x *DKSelectSearchRequest) GetHasAutolock() bool {
 	if x != nil {
 		return x.HasAutolock
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasOverDoubleCookingStove() bool {
+func (x *DKSelectSearchRequest) GetHasOverDoubleCookingStove() bool {
 	if x != nil {
 		return x.HasOverDoubleCookingStove
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasMonitorAutolock() bool {
+func (x *DKSelectSearchRequest) GetHasMonitorAutolock() bool {
 	if x != nil {
 		return x.HasMonitorAutolock
 	}
 	return false
 }
 
-func (x *SearchRequest) GetHasWarmWaterWashingToiletSeat() bool {
+func (x *DKSelectSearchRequest) GetHasWarmWaterWashingToiletSeat() bool {
 	if x != nil {
 		return x.HasWarmWaterWashingToiletSeat
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsCityGas() bool {
+func (x *DKSelectSearchRequest) GetIsCityGas() bool {
 	if x != nil {
 		return x.IsCityGas
 	}
 	return false
 }
 
-func (x *SearchRequest) GetIsDkSelect() bool {
+func (x *DKSelectSearchRequest) GetIsDkSelect() bool {
 	if x != nil {
 		return x.IsDkSelect
 	}
@@ -491,28 +491,28 @@ func (x *SearchRequest) GetIsDkSelect() bool {
 }
 
 // Response message for Search (Placeholder)
-type SearchResponse struct {
+type DKSelectSearchResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 物件リスト
-	Properties    []*Property `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
+	Properties    []*DKSelectProperty `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SearchResponse) Reset() {
-	*x = SearchResponse{}
+func (x *DKSelectSearchResponse) Reset() {
+	*x = DKSelectSearchResponse{}
 	mi := &file_eheya_v1_eheya_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SearchResponse) String() string {
+func (x *DKSelectSearchResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SearchResponse) ProtoMessage() {}
+func (*DKSelectSearchResponse) ProtoMessage() {}
 
-func (x *SearchResponse) ProtoReflect() protoreflect.Message {
+func (x *DKSelectSearchResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_eheya_v1_eheya_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -524,12 +524,12 @@ func (x *SearchResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SearchResponse.ProtoReflect.Descriptor instead.
-func (*SearchResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DKSelectSearchResponse.ProtoReflect.Descriptor instead.
+func (*DKSelectSearchResponse) Descriptor() ([]byte, []int) {
 	return file_eheya_v1_eheya_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *SearchResponse) GetProperties() []*Property {
+func (x *DKSelectSearchResponse) GetProperties() []*DKSelectProperty {
 	if x != nil {
 		return x.Properties
 	}
@@ -537,7 +537,7 @@ func (x *SearchResponse) GetProperties() []*Property {
 }
 
 // 物件
-type Property struct {
+type DKSelectProperty struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 物件ID
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -571,20 +571,20 @@ type Property struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Property) Reset() {
-	*x = Property{}
+func (x *DKSelectProperty) Reset() {
+	*x = DKSelectProperty{}
 	mi := &file_eheya_v1_eheya_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Property) String() string {
+func (x *DKSelectProperty) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Property) ProtoMessage() {}
+func (*DKSelectProperty) ProtoMessage() {}
 
-func (x *Property) ProtoReflect() protoreflect.Message {
+func (x *DKSelectProperty) ProtoReflect() protoreflect.Message {
 	mi := &file_eheya_v1_eheya_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -596,103 +596,103 @@ func (x *Property) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Property.ProtoReflect.Descriptor instead.
-func (*Property) Descriptor() ([]byte, []int) {
+// Deprecated: Use DKSelectProperty.ProtoReflect.Descriptor instead.
+func (*DKSelectProperty) Descriptor() ([]byte, []int) {
 	return file_eheya_v1_eheya_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Property) GetId() string {
+func (x *DKSelectProperty) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *Property) GetName() string {
+func (x *DKSelectProperty) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *Property) GetBuildingAge() int32 {
+func (x *DKSelectProperty) GetBuildingAge() int32 {
 	if x != nil {
 		return x.BuildingAge
 	}
 	return 0
 }
 
-func (x *Property) GetTotalFloors() int32 {
+func (x *DKSelectProperty) GetTotalFloors() int32 {
 	if x != nil {
 		return x.TotalFloors
 	}
 	return 0
 }
 
-func (x *Property) GetNearestStation() string {
+func (x *DKSelectProperty) GetNearestStation() string {
 	if x != nil {
 		return x.NearestStation
 	}
 	return ""
 }
 
-func (x *Property) GetAddress() string {
+func (x *DKSelectProperty) GetAddress() string {
 	if x != nil {
 		return x.Address
 	}
 	return ""
 }
 
-func (x *Property) GetFloor() int32 {
+func (x *DKSelectProperty) GetFloor() int32 {
 	if x != nil {
 		return x.Floor
 	}
 	return 0
 }
 
-func (x *Property) GetRent() string {
+func (x *DKSelectProperty) GetRent() string {
 	if x != nil {
 		return x.Rent
 	}
 	return ""
 }
 
-func (x *Property) GetManagementFee() string {
+func (x *DKSelectProperty) GetManagementFee() string {
 	if x != nil {
 		return x.ManagementFee
 	}
 	return ""
 }
 
-func (x *Property) GetDeposit() string {
+func (x *DKSelectProperty) GetDeposit() string {
 	if x != nil {
 		return x.Deposit
 	}
 	return ""
 }
 
-func (x *Property) GetKeyMoney() string {
+func (x *DKSelectProperty) GetKeyMoney() string {
 	if x != nil {
 		return x.KeyMoney
 	}
 	return ""
 }
 
-func (x *Property) GetHousePlan() HousePlan {
+func (x *DKSelectProperty) GetHousePlan() HousePlan {
 	if x != nil {
 		return x.HousePlan
 	}
 	return HousePlan_HOUSE_PLAN_UNSPECIFIED
 }
 
-func (x *Property) GetExclusiveArea() string {
+func (x *DKSelectProperty) GetExclusiveArea() string {
 	if x != nil {
 		return x.ExclusiveArea
 	}
 	return ""
 }
 
-func (x *Property) GetUpdatedAt() string {
+func (x *DKSelectProperty) GetUpdatedAt() string {
 	if x != nil {
 		return x.UpdatedAt
 	}
@@ -703,9 +703,9 @@ var File_eheya_v1_eheya_service_proto protoreflect.FileDescriptor
 
 const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1ceheya/v1/eheya_service.proto\x12\beheya.v1\"\xe2\n" +
+	"\x1ceheya/v1/eheya_service.proto\x12\beheya.v1\"\xea\n" +
 	"\n" +
-	"\rSearchRequest\x12#\n" +
+	"\x15DKSelectSearchRequest\x12#\n" +
 	"\rcategory_slug\x18\x01 \x01(\tR\fcategorySlug\x12'\n" +
 	"\x0fprefecture_slug\x18\x02 \x01(\tR\x0eprefectureSlug\x12\x17\n" +
 	"\acity_id\x18\x03 \x01(\tR\x06cityId\x122\n" +
@@ -741,12 +741,12 @@ const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\"has_warm_water_washing_toilet_seat\x18\x1d \x01(\bR\x1dhasWarmWaterWashingToiletSeat\x12\x1e\n" +
 	"\vis_city_gas\x18\x1e \x01(\bR\tisCityGas\x12 \n" +
 	"\fis_dk_select\x18\x1f \x01(\bR\n" +
-	"isDkSelect\"D\n" +
-	"\x0eSearchResponse\x122\n" +
+	"isDkSelect\"T\n" +
+	"\x16DKSelectSearchResponse\x12:\n" +
 	"\n" +
-	"properties\x18\x01 \x03(\v2\x12.eheya.v1.PropertyR\n" +
-	"properties\"\xb9\x03\n" +
-	"\bProperty\x12\x0e\n" +
+	"properties\x18\x01 \x03(\v2\x1a.eheya.v1.DKSelectPropertyR\n" +
+	"properties\"\xc1\x03\n" +
+	"\x10DKSelectProperty\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
 	"\fbuilding_age\x18\x03 \x01(\x05R\vbuildingAge\x12!\n" +
@@ -786,9 +786,9 @@ const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\rSortDirection\x12\x1e\n" +
 	"\x1aSORT_DIRECTION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12SORT_DIRECTION_ASC\x10\x01\x12\x17\n" +
-	"\x13SORT_DIRECTION_DESC\x10\x022K\n" +
-	"\fEheyaService\x12;\n" +
-	"\x06Search\x12\x17.eheya.v1.SearchRequest\x1a\x18.eheya.v1.SearchResponseB4Z2github.com/jo3qma/protobuf/gen/go/eheya/v1;eheyav1b\x06proto3"
+	"\x13SORT_DIRECTION_DESC\x10\x022c\n" +
+	"\fEheyaService\x12S\n" +
+	"\x0eDKSelectSearch\x12\x1f.eheya.v1.DKSelectSearchRequest\x1a .eheya.v1.DKSelectSearchResponseB4Z2github.com/jo3qma/protobuf/gen/go/eheya/v1;eheyav1b\x06proto3"
 
 var (
 	file_eheya_v1_eheya_service_proto_rawDescOnce sync.Once
@@ -805,21 +805,21 @@ func file_eheya_v1_eheya_service_proto_rawDescGZIP() []byte {
 var file_eheya_v1_eheya_service_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_eheya_v1_eheya_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_eheya_v1_eheya_service_proto_goTypes = []any{
-	(HousePlan)(0),         // 0: eheya.v1.HousePlan
-	(SortType)(0),          // 1: eheya.v1.SortType
-	(SortDirection)(0),     // 2: eheya.v1.SortDirection
-	(*SearchRequest)(nil),  // 3: eheya.v1.SearchRequest
-	(*SearchResponse)(nil), // 4: eheya.v1.SearchResponse
-	(*Property)(nil),       // 5: eheya.v1.Property
+	(HousePlan)(0),                 // 0: eheya.v1.HousePlan
+	(SortType)(0),                  // 1: eheya.v1.SortType
+	(SortDirection)(0),             // 2: eheya.v1.SortDirection
+	(*DKSelectSearchRequest)(nil),  // 3: eheya.v1.DKSelectSearchRequest
+	(*DKSelectSearchResponse)(nil), // 4: eheya.v1.DKSelectSearchResponse
+	(*DKSelectProperty)(nil),       // 5: eheya.v1.DKSelectProperty
 }
 var file_eheya_v1_eheya_service_proto_depIdxs = []int32{
-	0, // 0: eheya.v1.SearchRequest.house_plan:type_name -> eheya.v1.HousePlan
-	1, // 1: eheya.v1.SearchRequest.sort_type:type_name -> eheya.v1.SortType
-	2, // 2: eheya.v1.SearchRequest.sort_direct:type_name -> eheya.v1.SortDirection
-	5, // 3: eheya.v1.SearchResponse.properties:type_name -> eheya.v1.Property
-	0, // 4: eheya.v1.Property.house_plan:type_name -> eheya.v1.HousePlan
-	3, // 5: eheya.v1.EheyaService.Search:input_type -> eheya.v1.SearchRequest
-	4, // 6: eheya.v1.EheyaService.Search:output_type -> eheya.v1.SearchResponse
+	0, // 0: eheya.v1.DKSelectSearchRequest.house_plan:type_name -> eheya.v1.HousePlan
+	1, // 1: eheya.v1.DKSelectSearchRequest.sort_type:type_name -> eheya.v1.SortType
+	2, // 2: eheya.v1.DKSelectSearchRequest.sort_direct:type_name -> eheya.v1.SortDirection
+	5, // 3: eheya.v1.DKSelectSearchResponse.properties:type_name -> eheya.v1.DKSelectProperty
+	0, // 4: eheya.v1.DKSelectProperty.house_plan:type_name -> eheya.v1.HousePlan
+	3, // 5: eheya.v1.EheyaService.DKSelectSearch:input_type -> eheya.v1.DKSelectSearchRequest
+	4, // 6: eheya.v1.EheyaService.DKSelectSearch:output_type -> eheya.v1.DKSelectSearchResponse
 	6, // [6:7] is the sub-list for method output_type
 	5, // [5:6] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

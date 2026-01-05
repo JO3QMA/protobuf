@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { SearchRequest, SearchResponse } from "./eheya_service_pb.js";
+import { DKSelectSearchRequest, DKSelectSearchResponse } from "./eheya_service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -17,12 +17,12 @@ export const EheyaService = {
     /**
      * Search properties based on various conditions
      *
-     * @generated from rpc eheya.v1.EheyaService.Search
+     * @generated from rpc eheya.v1.EheyaService.DKSelectSearch
      */
-    search: {
-      name: "Search",
-      I: SearchRequest,
-      O: SearchResponse,
+    dKSelectSearch: {
+      name: "DKSelectSearch",
+      I: DKSelectSearchRequest,
+      O: DKSelectSearchResponse,
       kind: MethodKind.Unary,
     },
   }
