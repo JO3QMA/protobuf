@@ -13,9 +13,9 @@ export declare const file_eheya_v1_eheya_service: GenFile;
 /**
  * Request message for Search
  *
- * @generated from message eheya.v1.DKSelectSearchRequest
+ * @generated from message eheya.v1.SearchRequest
  */
-export declare type DKSelectSearchRequest = Message<"eheya.v1.DKSelectSearchRequest"> & {
+export declare type SearchRequest = Message<"eheya.v1.SearchRequest"> & {
   /**
    * Path parameters (required)
    *
@@ -201,37 +201,37 @@ export declare type DKSelectSearchRequest = Message<"eheya.v1.DKSelectSearchRequ
 };
 
 /**
- * Describes the message eheya.v1.DKSelectSearchRequest.
- * Use `create(DKSelectSearchRequestSchema)` to create a new message.
+ * Describes the message eheya.v1.SearchRequest.
+ * Use `create(SearchRequestSchema)` to create a new message.
  */
-export declare const DKSelectSearchRequestSchema: GenMessage<DKSelectSearchRequest>;
+export declare const SearchRequestSchema: GenMessage<SearchRequest>;
 
 /**
  * Response message for Search (Placeholder)
  *
- * @generated from message eheya.v1.DKSelectSearchResponse
+ * @generated from message eheya.v1.SearchResponse
  */
-export declare type DKSelectSearchResponse = Message<"eheya.v1.DKSelectSearchResponse"> & {
+export declare type SearchResponse = Message<"eheya.v1.SearchResponse"> & {
   /**
    * 物件リスト
    *
-   * @generated from field: repeated eheya.v1.DKSelectProperty properties = 1;
+   * @generated from field: repeated eheya.v1.Property properties = 1;
    */
-  properties: DKSelectProperty[];
+  properties: Property[];
 };
 
 /**
- * Describes the message eheya.v1.DKSelectSearchResponse.
- * Use `create(DKSelectSearchResponseSchema)` to create a new message.
+ * Describes the message eheya.v1.SearchResponse.
+ * Use `create(SearchResponseSchema)` to create a new message.
  */
-export declare const DKSelectSearchResponseSchema: GenMessage<DKSelectSearchResponse>;
+export declare const SearchResponseSchema: GenMessage<SearchResponse>;
 
 /**
  * 物件
  *
- * @generated from message eheya.v1.DKSelectProperty
+ * @generated from message eheya.v1.Property
  */
-export declare type DKSelectProperty = Message<"eheya.v1.DKSelectProperty"> & {
+export declare type Property = Message<"eheya.v1.Property"> & {
   /**
    * 物件ID
    *
@@ -332,10 +332,10 @@ export declare type DKSelectProperty = Message<"eheya.v1.DKSelectProperty"> & {
 };
 
 /**
- * Describes the message eheya.v1.DKSelectProperty.
- * Use `create(DKSelectPropertySchema)` to create a new message.
+ * Describes the message eheya.v1.Property.
+ * Use `create(PropertySchema)` to create a new message.
  */
-export declare const DKSelectPropertySchema: GenMessage<DKSelectProperty>;
+export declare const PropertySchema: GenMessage<Property>;
 
 /**
  * HousePlan enum
@@ -505,12 +505,12 @@ export declare const EheyaService: GenService<{
   /**
    * Search properties based on various conditions
    *
-   * @generated from rpc eheya.v1.EheyaService.DKSelectSearch
+   * @generated from rpc eheya.v1.EheyaService.Search
    */
-  dKSelectSearch: {
+  search: {
     methodKind: "unary";
-    input: typeof DKSelectSearchRequestSchema;
-    output: typeof DKSelectSearchResponseSchema;
+    input: typeof SearchRequestSchema;
+    output: typeof SearchResponseSchema;
   },
 }>;
 

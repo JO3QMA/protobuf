@@ -4,9 +4,9 @@
 ## Table of Contents
 
 - [eheya/v1/eheya_service.proto](#eheya_v1_eheya_service-proto)
-    - [DKSelectProperty](#eheya-v1-DKSelectProperty)
-    - [DKSelectSearchRequest](#eheya-v1-DKSelectSearchRequest)
-    - [DKSelectSearchResponse](#eheya-v1-DKSelectSearchResponse)
+    - [Property](#eheya-v1-Property)
+    - [SearchRequest](#eheya-v1-SearchRequest)
+    - [SearchResponse](#eheya-v1-SearchResponse)
   
     - [HousePlan](#eheya-v1-HousePlan)
     - [SortDirection](#eheya-v1-SortDirection)
@@ -47,9 +47,9 @@
 
 
 
-<a name="eheya-v1-DKSelectProperty"></a>
+<a name="eheya-v1-Property"></a>
 
-### DKSelectProperty
+### Property
 物件
 
 
@@ -75,9 +75,9 @@
 
 
 
-<a name="eheya-v1-DKSelectSearchRequest"></a>
+<a name="eheya-v1-SearchRequest"></a>
 
-### DKSelectSearchRequest
+### SearchRequest
 Request message for Search
 
 
@@ -124,15 +124,15 @@ e.g., &#34;YEN_60000&#34; |
 
 
 
-<a name="eheya-v1-DKSelectSearchResponse"></a>
+<a name="eheya-v1-SearchResponse"></a>
 
-### DKSelectSearchResponse
+### SearchResponse
 Response message for Search (Placeholder)
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| properties | [DKSelectProperty](#eheya-v1-DKSelectProperty) | repeated | 物件リスト |
+| properties | [Property](#eheya-v1-Property) | repeated | 物件リスト |
 
 
 
@@ -201,7 +201,7 @@ EheyaService provides search functionality for eheya.net
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| DKSelectSearch | [DKSelectSearchRequest](#eheya-v1-DKSelectSearchRequest) | [DKSelectSearchResponse](#eheya-v1-DKSelectSearchResponse) | Search properties based on various conditions |
+| Search | [SearchRequest](#eheya-v1-SearchRequest) | [SearchResponse](#eheya-v1-SearchResponse) | Search properties based on various conditions |
 
  
 

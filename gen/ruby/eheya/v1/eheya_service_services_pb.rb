@@ -17,7 +17,7 @@ module Eheya
         self.service_name = 'eheya.v1.EheyaService'
 
         # Search properties based on various conditions
-        rpc :DKSelectSearch, ::Eheya::V1::DKSelectSearchRequest, ::Eheya::V1::DKSelectSearchResponse
+        rpc :Search, ::Eheya::V1::SearchRequest, ::Eheya::V1::SearchResponse
       end
 
       Stub = Service.rpc_stub_class

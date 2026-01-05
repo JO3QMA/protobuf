@@ -33,15 +33,14 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// EheyaServiceDKSelectSearchProcedure is the fully-qualified name of the EheyaService's
-	// DKSelectSearch RPC.
-	EheyaServiceDKSelectSearchProcedure = "/eheya.v1.EheyaService/DKSelectSearch"
+	// EheyaServiceSearchProcedure is the fully-qualified name of the EheyaService's Search RPC.
+	EheyaServiceSearchProcedure = "/eheya.v1.EheyaService/Search"
 )
 
 // EheyaServiceClient is a client for the eheya.v1.EheyaService service.
 type EheyaServiceClient interface {
 	// Search properties based on various conditions
-	DKSelectSearch(context.Context, *connect.Request[v1.DKSelectSearchRequest]) (*connect.Response[v1.DKSelectSearchResponse], error)
+	Search(context.Context, *connect.Request[v1.SearchRequest]) (*connect.Response[v1.SearchResponse], error)
 }
 
 // NewEheyaServiceClient constructs a client for the eheya.v1.EheyaService service. By default, it
@@ -55,10 +54,10 @@ func NewEheyaServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 	baseURL = strings.TrimRight(baseURL, "/")
 	eheyaServiceMethods := v1.File_eheya_v1_eheya_service_proto.Services().ByName("EheyaService").Methods()
 	return &eheyaServiceClient{
-		dKSelectSearch: connect.NewClient[v1.DKSelectSearchRequest, v1.DKSelectSearchResponse](
+		search: connect.NewClient[v1.SearchRequest, v1.SearchResponse](
 			httpClient,
-			baseURL+EheyaServiceDKSelectSearchProcedure,
-			connect.WithSchema(eheyaServiceMethods.ByName("DKSelectSearch")),
+			baseURL+EheyaServiceSearchProcedure,
+			connect.WithSchema(eheyaServiceMethods.ByName("Search")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -66,18 +65,18 @@ func NewEheyaServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 
 // eheyaServiceClient implements EheyaServiceClient.
 type eheyaServiceClient struct {
-	dKSelectSearch *connect.Client[v1.DKSelectSearchRequest, v1.DKSelectSearchResponse]
+	search *connect.Client[v1.SearchRequest, v1.SearchResponse]
 }
 
-// DKSelectSearch calls eheya.v1.EheyaService.DKSelectSearch.
-func (c *eheyaServiceClient) DKSelectSearch(ctx context.Context, req *connect.Request[v1.DKSelectSearchRequest]) (*connect.Response[v1.DKSelectSearchResponse], error) {
-	return c.dKSelectSearch.CallUnary(ctx, req)
+// Search calls eheya.v1.EheyaService.Search.
+func (c *eheyaServiceClient) Search(ctx context.Context, req *connect.Request[v1.SearchRequest]) (*connect.Response[v1.SearchResponse], error) {
+	return c.search.CallUnary(ctx, req)
 }
 
 // EheyaServiceHandler is an implementation of the eheya.v1.EheyaService service.
 type EheyaServiceHandler interface {
 	// Search properties based on various conditions
-	DKSelectSearch(context.Context, *connect.Request[v1.DKSelectSearchRequest]) (*connect.Response[v1.DKSelectSearchResponse], error)
+	Search(context.Context, *connect.Request[v1.SearchRequest]) (*connect.Response[v1.SearchResponse], error)
 }
 
 // NewEheyaServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -87,16 +86,16 @@ type EheyaServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewEheyaServiceHandler(svc EheyaServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	eheyaServiceMethods := v1.File_eheya_v1_eheya_service_proto.Services().ByName("EheyaService").Methods()
-	eheyaServiceDKSelectSearchHandler := connect.NewUnaryHandler(
-		EheyaServiceDKSelectSearchProcedure,
-		svc.DKSelectSearch,
-		connect.WithSchema(eheyaServiceMethods.ByName("DKSelectSearch")),
+	eheyaServiceSearchHandler := connect.NewUnaryHandler(
+		EheyaServiceSearchProcedure,
+		svc.Search,
+		connect.WithSchema(eheyaServiceMethods.ByName("Search")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/eheya.v1.EheyaService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case EheyaServiceDKSelectSearchProcedure:
-			eheyaServiceDKSelectSearchHandler.ServeHTTP(w, r)
+		case EheyaServiceSearchProcedure:
+			eheyaServiceSearchHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -106,6 +105,6 @@ func NewEheyaServiceHandler(svc EheyaServiceHandler, opts ...connect.HandlerOpti
 // UnimplementedEheyaServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedEheyaServiceHandler struct{}
 
-func (UnimplementedEheyaServiceHandler) DKSelectSearch(context.Context, *connect.Request[v1.DKSelectSearchRequest]) (*connect.Response[v1.DKSelectSearchResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("eheya.v1.EheyaService.DKSelectSearch is not implemented"))
+func (UnimplementedEheyaServiceHandler) Search(context.Context, *connect.Request[v1.SearchRequest]) (*connect.Response[v1.SearchResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("eheya.v1.EheyaService.Search is not implemented"))
 }
