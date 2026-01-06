@@ -53,6 +53,9 @@ message SearchRequest {
   bool has_warm_water_washing_toilet_seat = 29;
   bool is_city_gas = 30;
   bool is_dk_select = 31; // Duplicate of dk_select? Kept for completeness with detail.*
+
+  // ページ番号
+  int32 page = 32;
 }
 
 // Response message for Search (Placeholder)
@@ -62,6 +65,12 @@ message SearchResponse {
 
   // 物件数
   int32 total_count = 2;
+
+  // 現在のページ番号
+  int32 current_page = 3;
+
+  // 総ページ数
+  int32 total_pages = 4;
 }
 
 // 物件
