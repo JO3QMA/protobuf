@@ -118,6 +118,7 @@ e.g., &#34;YEN_60000&#34; |
 | has_warm_water_washing_toilet_seat | [bool](#bool) |  |  |
 | is_city_gas | [bool](#bool) |  |  |
 | is_dk_select | [bool](#bool) |  | Duplicate of dk_select? Kept for completeness with detail.* |
+| page | [int32](#int32) |  | ページ番号 |
 
 
 
@@ -134,6 +135,8 @@ Response message for Search (Placeholder)
 | ----- | ---- | ----- | ----------- |
 | properties | [Property](#eheya-v1-Property) | repeated | 物件リスト |
 | total_count | [int32](#int32) |  | 物件数 |
+| current_page | [int32](#int32) |  | 現在のページ番号 |
+| total_pages | [int32](#int32) |  | 総ページ数 |
 
 
 

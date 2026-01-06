@@ -239,8 +239,10 @@ type SearchRequest struct {
 	HasWarmWaterWashingToiletSeat bool `protobuf:"varint,29,opt,name=has_warm_water_washing_toilet_seat,json=hasWarmWaterWashingToiletSeat,proto3" json:"has_warm_water_washing_toilet_seat,omitempty"`
 	IsCityGas                     bool `protobuf:"varint,30,opt,name=is_city_gas,json=isCityGas,proto3" json:"is_city_gas,omitempty"`
 	IsDkSelect                    bool `protobuf:"varint,31,opt,name=is_dk_select,json=isDkSelect,proto3" json:"is_dk_select,omitempty"` // Duplicate of dk_select? Kept for completeness with detail.*
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
+	// ページ番号
+	Page          int32 `protobuf:"varint,32,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SearchRequest) Reset() {
@@ -490,13 +492,24 @@ func (x *SearchRequest) GetIsDkSelect() bool {
 	return false
 }
 
+func (x *SearchRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
 // Response message for Search (Placeholder)
 type SearchResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 物件リスト
 	Properties []*Property `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
 	// 物件数
-	TotalCount    int32 `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	TotalCount int32 `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	// 現在のページ番号
+	CurrentPage int32 `protobuf:"varint,3,opt,name=current_page,json=currentPage,proto3" json:"current_page,omitempty"`
+	// 総ページ数
+	TotalPages    int32 `protobuf:"varint,4,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -541,6 +554,20 @@ func (x *SearchResponse) GetProperties() []*Property {
 func (x *SearchResponse) GetTotalCount() int32 {
 	if x != nil {
 		return x.TotalCount
+	}
+	return 0
+}
+
+func (x *SearchResponse) GetCurrentPage() int32 {
+	if x != nil {
+		return x.CurrentPage
+	}
+	return 0
+}
+
+func (x *SearchResponse) GetTotalPages() int32 {
+	if x != nil {
+		return x.TotalPages
 	}
 	return 0
 }
@@ -712,7 +739,7 @@ var File_eheya_v1_eheya_service_proto protoreflect.FileDescriptor
 
 const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1ceheya/v1/eheya_service.proto\x12\beheya.v1\"\xe2\n" +
+	"\x1ceheya/v1/eheya_service.proto\x12\beheya.v1\"\xf6\n" +
 	"\n" +
 	"\rSearchRequest\x12#\n" +
 	"\rcategory_slug\x18\x01 \x01(\tR\fcategorySlug\x12'\n" +
@@ -750,13 +777,17 @@ const file_eheya_v1_eheya_service_proto_rawDesc = "" +
 	"\"has_warm_water_washing_toilet_seat\x18\x1d \x01(\bR\x1dhasWarmWaterWashingToiletSeat\x12\x1e\n" +
 	"\vis_city_gas\x18\x1e \x01(\bR\tisCityGas\x12 \n" +
 	"\fis_dk_select\x18\x1f \x01(\bR\n" +
-	"isDkSelect\"e\n" +
+	"isDkSelect\x12\x12\n" +
+	"\x04page\x18  \x01(\x05R\x04page\"\xa9\x01\n" +
 	"\x0eSearchResponse\x122\n" +
 	"\n" +
 	"properties\x18\x01 \x03(\v2\x12.eheya.v1.PropertyR\n" +
 	"properties\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xb9\x03\n" +
+	"totalCount\x12!\n" +
+	"\fcurrent_page\x18\x03 \x01(\x05R\vcurrentPage\x12\x1f\n" +
+	"\vtotal_pages\x18\x04 \x01(\x05R\n" +
+	"totalPages\"\xb9\x03\n" +
 	"\bProperty\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +

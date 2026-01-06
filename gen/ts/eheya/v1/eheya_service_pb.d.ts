@@ -198,6 +198,13 @@ export declare type SearchRequest = Message<"eheya.v1.SearchRequest"> & {
    * @generated from field: bool is_dk_select = 31;
    */
   isDkSelect: boolean;
+
+  /**
+   * ページ番号
+   *
+   * @generated from field: int32 page = 32;
+   */
+  page: number;
 };
 
 /**
@@ -225,6 +232,20 @@ export declare type SearchResponse = Message<"eheya.v1.SearchResponse"> & {
    * @generated from field: int32 total_count = 2;
    */
   totalCount: number;
+
+  /**
+   * 現在のページ番号
+   *
+   * @generated from field: int32 current_page = 3;
+   */
+  currentPage: number;
+
+  /**
+   * 総ページ数
+   *
+   * @generated from field: int32 total_pages = 4;
+   */
+  totalPages: number;
 };
 
 /**
