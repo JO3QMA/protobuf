@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetAuctionRequest, GetAuctionResponse, GetCategoryItemsRequest, GetCategoryItemsResponse } from "./yahoo_auction_pb.js";
+import { GetAuctionRequest, GetAuctionResponse, GetCategoryItemsRequest, GetCategoryItemsResponse, SearchAuctionsRequest, SearchAuctionsResponse } from "./yahoo_auction_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -34,6 +34,17 @@ export const YahooAuctionService = {
       name: "GetCategoryItems",
       I: GetCategoryItemsRequest,
       O: GetCategoryItemsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * SearchAuctions はヤフオクのキーワード検索で商品一覧を取得します（新着順）。
+     *
+     * @generated from rpc yahoo_auction.v1.YahooAuctionService.SearchAuctions
+     */
+    searchAuctions: {
+      name: "SearchAuctions",
+      I: SearchAuctionsRequest,
+      O: SearchAuctionsResponse,
       kind: MethodKind.Unary,
     },
   }
