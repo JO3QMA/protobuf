@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Tag name (e.g. v0.1.0)'
+        description: 'Semantic version (e.g. v0.1.0). Actual Git tag will be gen/go/<version>.'
         required: true
         type: string
       message:
@@ -26,19 +26,21 @@ jobs:
       - name: Validate tag does not exist
         run: |
           VERSION="${{ github.event.inputs.version }}"
-          if git rev-parse "$VERSION" >/dev/null 2>&1; then
-            echo "::error::Tag '$VERSION' already exists"
+          TAG_NAME="gen/go/$VERSION"
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "::error::Tag '$TAG_NAME' already exists"
             exit 1
           fi
 
       - name: Create and push tag
         run: |
           VERSION="${{ github.event.inputs.version }}"
+          TAG_NAME="gen/go/$VERSION"
           MESSAGE="${{ github.event.inputs.message }}"
           if [ -z "$MESSAGE" ]; then
             MESSAGE="Release $VERSION"
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "$VERSION" -m "$MESSAGE"
-          git push origin "$VERSION"
+          git tag -a "$TAG_NAME" -m "$MESSAGE"
+          git push origin "$TAG_NAME"
