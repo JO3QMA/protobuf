@@ -14,6 +14,9 @@ service YahooAuctionService {
 
   // GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。
   rpc GetCategoryItems (GetCategoryItemsRequest) returns (GetCategoryItemsResponse);
+
+  // SearchAuctions はヤフオクのキーワード検索で商品一覧を取得します（新着順）。
+  rpc SearchAuctions (SearchAuctionsRequest) returns (SearchAuctionsResponse);
 }
 
 // GetAuctionRequest はヤフオクのオークションIDを指定するリクエストです。
@@ -126,6 +129,44 @@ message GetCategoryItemsResponse {
     // 入札数
     int64 bid_count = 6;
   }
+  // total_count は商品の総数です。
+  int64 total_count = 2;
+}
+
+// SearchAuctionsRequest はヤフオクのキーワード検索リクエストです。
+message SearchAuctionsRequest {
+  // query は検索キーワードです。
+  string query = 1;
+
+  // page はページ番号です（0始まり）。
+  int64 page = 2;
+}
+
+// SearchAuctionsResponse はヤフオクの検索結果を返すレスポンスです。
+message SearchAuctionsResponse {
+  // items は商品のリストです（新着順）。
+  repeated Item items = 1;
+
+  message Item {
+    // auction_id はヤフオクのオークションIDです。
+    string auction_id = 1;
+
+    // title は商品のタイトル（商品名）です。
+    string title = 2;
+
+    // current_price は現在価格（単位は通常「円」）。
+    int64 current_price = 3;
+
+    // 即決価格
+    int64 immediate_price = 4;
+
+    // image は商品のサムネイル画像URLです。
+    string image = 5;
+
+    // 入札数
+    int64 bid_count = 6;
+  }
+
   // total_count は商品の総数です。
   int64 total_count = 2;
 }
