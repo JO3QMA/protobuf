@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package eheya.v1;
+
+option go_package = "github.com/jo3qma/protobuf/gen/go/eheya/v1;eheyav1";
+
+// EheyaService provides search functionality for eheya.net
+service EheyaService {
+  // Search properties based on various conditions
+  rpc Search(SearchRequest) returns (SearchResponse);
+}
+
+// Request message for Search
+message SearchRequest {
+  // Path parameters (required)
+  string category_slug = 1; // e.g., "dk-select"
+  string prefecture_slug = 2; // e.g., "osaka"
+  string city_id = 3; // e.g., "27115"
+
+  // Query parameters
+  repeated HousePlan house_plan = 4;
+  bool dk_select = 5;
+  SortType sort_type = 6;
+  SortDirection sort_direct = 7;
+
+  // Detail filters (detail.*)
+  string price_min = 8; // e.g., "YEN_60000"
+  string price_max = 9; // e.g., "YEN_80000"
+  bool include_manage_cost = 10;
+  bool is_deposit_zero = 11;
+  bool is_key_money_zero = 12;
+
+  string use_part_area_min = 13; // e.g., "SQUARE_METERS_30"
+  string use_part_area_max = 14; // e.g., "SQUARE_METERS_50"
+
+  string walk_from_station_minutes = 15; // e.g., "LESS_10_MINUTES"
+  bool include_bus_minutes = 16;
+
+  string age = 17; // e.g., "LESS_10", "NEW_BUILD"
+
+  // Boolean flags (Preferences)
+  bool is_separated_bath_and_toilet = 18;
+  bool is_over_second_floor = 19;
+  bool has_parking = 20;
+  bool has_air_conditioner = 21;
+  bool has_washing_machine_place = 22;
+  bool is_free_wash_room = 23;
+  bool is_pet_negotiable = 24;
+  bool is_pet_friendly = 25;
+  bool has_autolock = 26;
+  bool has_over_double_cooking_stove = 27;
+  bool has_monitor_autolock = 28;
+  bool has_warm_water_washing_toilet_seat = 29;
+  bool is_city_gas = 30;
+  bool is_dk_select = 31; // Duplicate of dk_select? Kept for completeness with detail.*
+
+  // ページ番号
+  int32 page = 32;
+}
+
+// Response message for Search (Placeholder)
+message SearchResponse {
+  // 物件リスト
+  repeated Property properties = 1;
+
+  // 物件数
+  int32 total_count = 2;
+
+  // 現在のページ番号
+  int32 current_page = 3;
+
+  // 総ページ数
+  int32 total_pages = 4;
+}
+
+// 物件
+message Property {
+  // 物件ID
+  string id = 1;
+
+  // 物件名
+  string name = 2;
+  
+  // 築年数
+  int32 building_age = 3;
+
+  // n階建て
+  int32 total_floors = 4;
+
+  // 最寄り駅
+  string nearest_station = 5;
+
+  // 住所
+  string address = 6;
+
+  // 階層
+  int32 floor = 7;
+  
+  // 家賃
+  string rent = 8;
+
+  // 管理費
+  string management_fee = 9;
+
+  // 敷金
+  string deposit = 10;
+
+  // 礼金
+  string key_money = 11;
+
+  // 間取り
+  HousePlan house_plan = 12;
+
+  // 専有面積
+  string exclusive_area = 13;
+
+  // 最終更新日時
+  string updated_at = 14;
+}
+
+// HousePlan enum
+enum HousePlan {
+  HOUSE_PLAN_UNSPECIFIED = 0;
+  HOUSE_PLAN_ONE_R = 1;   // 1R
+  HOUSE_PLAN_ONE_K = 2;   // 1K
+  HOUSE_PLAN_ONE_DK = 3;  // 1DK
+  HOUSE_PLAN_ONE_LDK = 4; // 1LDK
+  HOUSE_PLAN_TWO_K = 5;   // 2K
+  HOUSE_PLAN_TWO_DK = 6;  // 2DK
+  HOUSE_PLAN_TWO_LDK = 7; // 2LDK
+  HOUSE_PLAN_THREE_K = 8; // 3K
+  HOUSE_PLAN_THREE_DK = 9;// 3DK
+  HOUSE_PLAN_THREE_LDK = 10; // 3LDK
+  HOUSE_PLAN_FOUR_K = 11; // 4K
+  HOUSE_PLAN_FOUR_DK = 12;// 4DK
+  HOUSE_PLAN_FOUR_LDK = 13; // 4LDK
+  // Add others if exist
+}
+
+// SortType enum
+enum SortType {
+  SORT_TYPE_UNSPECIFIED = 0;
+  SORT_TYPE_RECOMMENDED_OF_VACANCY = 1;
+  // Add others if found
+}
+
+// SortDirection enum
+enum SortDirection {
+  SORT_DIRECTION_UNSPECIFIED = 0;
+  SORT_DIRECTION_ASC = 1;
+  SORT_DIRECTION_DESC = 2;
+}
+

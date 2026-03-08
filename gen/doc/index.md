@@ -3,6 +3,17 @@
 
 ## Table of Contents
 
+- [eheya/v1/eheya_service.proto](#eheya_v1_eheya_service-proto)
+    - [Property](#eheya-v1-Property)
+    - [SearchRequest](#eheya-v1-SearchRequest)
+    - [SearchResponse](#eheya-v1-SearchResponse)
+  
+    - [HousePlan](#eheya-v1-HousePlan)
+    - [SortDirection](#eheya-v1-SortDirection)
+    - [SortType](#eheya-v1-SortType)
+  
+    - [EheyaService](#eheya-v1-EheyaService)
+  
 - [hello/v1/hello.proto](#hello_v1_hello-proto)
     - [GetUserRequest](#hello-v1-GetUserRequest)
     - [GetUserResponse](#hello-v1-GetUserResponse)
@@ -20,12 +31,186 @@
     - [GetCategoryItemsRequest](#yahoo_auction-v1-GetCategoryItemsRequest)
     - [GetCategoryItemsResponse](#yahoo_auction-v1-GetCategoryItemsResponse)
     - [GetCategoryItemsResponse.Item](#yahoo_auction-v1-GetCategoryItemsResponse-Item)
+    - [SearchAuctionsRequest](#yahoo_auction-v1-SearchAuctionsRequest)
+    - [SearchAuctionsResponse](#yahoo_auction-v1-SearchAuctionsResponse)
+    - [SearchAuctionsResponse.Item](#yahoo_auction-v1-SearchAuctionsResponse-Item)
   
     - [AuctionStatus](#yahoo_auction-v1-AuctionStatus)
   
     - [YahooAuctionService](#yahoo_auction-v1-YahooAuctionService)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="eheya_v1_eheya_service-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## eheya/v1/eheya_service.proto
+
+
+
+<a name="eheya-v1-Property"></a>
+
+### Property
+物件
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | 物件ID |
+| name | [string](#string) |  | 物件名 |
+| building_age | [int32](#int32) |  | 築年数 |
+| total_floors | [int32](#int32) |  | n階建て |
+| nearest_station | [string](#string) |  | 最寄り駅 |
+| address | [string](#string) |  | 住所 |
+| floor | [int32](#int32) |  | 階層 |
+| rent | [string](#string) |  | 家賃 |
+| management_fee | [string](#string) |  | 管理費 |
+| deposit | [string](#string) |  | 敷金 |
+| key_money | [string](#string) |  | 礼金 |
+| house_plan | [HousePlan](#eheya-v1-HousePlan) |  | 間取り |
+| exclusive_area | [string](#string) |  | 専有面積 |
+| updated_at | [string](#string) |  | 最終更新日時 |
+
+
+
+
+
+
+<a name="eheya-v1-SearchRequest"></a>
+
+### SearchRequest
+Request message for Search
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category_slug | [string](#string) |  | Path parameters (required)
+
+e.g., &#34;dk-select&#34; |
+| prefecture_slug | [string](#string) |  | e.g., &#34;osaka&#34; |
+| city_id | [string](#string) |  | e.g., &#34;27115&#34; |
+| house_plan | [HousePlan](#eheya-v1-HousePlan) | repeated | Query parameters |
+| dk_select | [bool](#bool) |  |  |
+| sort_type | [SortType](#eheya-v1-SortType) |  |  |
+| sort_direct | [SortDirection](#eheya-v1-SortDirection) |  |  |
+| price_min | [string](#string) |  | Detail filters (detail.*)
+
+e.g., &#34;YEN_60000&#34; |
+| price_max | [string](#string) |  | e.g., &#34;YEN_80000&#34; |
+| include_manage_cost | [bool](#bool) |  |  |
+| is_deposit_zero | [bool](#bool) |  |  |
+| is_key_money_zero | [bool](#bool) |  |  |
+| use_part_area_min | [string](#string) |  | e.g., &#34;SQUARE_METERS_30&#34; |
+| use_part_area_max | [string](#string) |  | e.g., &#34;SQUARE_METERS_50&#34; |
+| walk_from_station_minutes | [string](#string) |  | e.g., &#34;LESS_10_MINUTES&#34; |
+| include_bus_minutes | [bool](#bool) |  |  |
+| age | [string](#string) |  | e.g., &#34;LESS_10&#34;, &#34;NEW_BUILD&#34; |
+| is_separated_bath_and_toilet | [bool](#bool) |  | Boolean flags (Preferences) |
+| is_over_second_floor | [bool](#bool) |  |  |
+| has_parking | [bool](#bool) |  |  |
+| has_air_conditioner | [bool](#bool) |  |  |
+| has_washing_machine_place | [bool](#bool) |  |  |
+| is_free_wash_room | [bool](#bool) |  |  |
+| is_pet_negotiable | [bool](#bool) |  |  |
+| is_pet_friendly | [bool](#bool) |  |  |
+| has_autolock | [bool](#bool) |  |  |
+| has_over_double_cooking_stove | [bool](#bool) |  |  |
+| has_monitor_autolock | [bool](#bool) |  |  |
+| has_warm_water_washing_toilet_seat | [bool](#bool) |  |  |
+| is_city_gas | [bool](#bool) |  |  |
+| is_dk_select | [bool](#bool) |  | Duplicate of dk_select? Kept for completeness with detail.* |
+| page | [int32](#int32) |  | ページ番号 |
+
+
+
+
+
+
+<a name="eheya-v1-SearchResponse"></a>
+
+### SearchResponse
+Response message for Search (Placeholder)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| properties | [Property](#eheya-v1-Property) | repeated | 物件リスト |
+| total_count | [int32](#int32) |  | 物件数 |
+| current_page | [int32](#int32) |  | 現在のページ番号 |
+| total_pages | [int32](#int32) |  | 総ページ数 |
+
+
+
+
+
+ 
+
+
+<a name="eheya-v1-HousePlan"></a>
+
+### HousePlan
+HousePlan enum
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| HOUSE_PLAN_UNSPECIFIED | 0 |  |
+| HOUSE_PLAN_ONE_R | 1 | 1R |
+| HOUSE_PLAN_ONE_K | 2 | 1K |
+| HOUSE_PLAN_ONE_DK | 3 | 1DK |
+| HOUSE_PLAN_ONE_LDK | 4 | 1LDK |
+| HOUSE_PLAN_TWO_K | 5 | 2K |
+| HOUSE_PLAN_TWO_DK | 6 | 2DK |
+| HOUSE_PLAN_TWO_LDK | 7 | 2LDK |
+| HOUSE_PLAN_THREE_K | 8 | 3K |
+| HOUSE_PLAN_THREE_DK | 9 | 3DK |
+| HOUSE_PLAN_THREE_LDK | 10 | 3LDK |
+| HOUSE_PLAN_FOUR_K | 11 | 4K |
+| HOUSE_PLAN_FOUR_DK | 12 | 4DK |
+| HOUSE_PLAN_FOUR_LDK | 13 | 4LDK |
+
+
+
+<a name="eheya-v1-SortDirection"></a>
+
+### SortDirection
+SortDirection enum
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SORT_DIRECTION_UNSPECIFIED | 0 |  |
+| SORT_DIRECTION_ASC | 1 |  |
+| SORT_DIRECTION_DESC | 2 |  |
+
+
+
+<a name="eheya-v1-SortType"></a>
+
+### SortType
+SortType enum
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SORT_TYPE_UNSPECIFIED | 0 |  |
+| SORT_TYPE_RECOMMENDED_OF_VACANCY | 1 | Add others if found |
+
+
+ 
+
+ 
+
+
+<a name="eheya-v1-EheyaService"></a>
+
+### EheyaService
+EheyaService provides search functionality for eheya.net
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Search | [SearchRequest](#eheya-v1-SearchRequest) | [SearchResponse](#eheya-v1-SearchResponse) | Search properties based on various conditions |
+
+ 
 
 
 
@@ -263,6 +448,58 @@ GetAuctionResponse はヤフオクのオークション情報を返すレスポ�
 
 
 
+
+<a name="yahoo_auction-v1-SearchAuctionsRequest"></a>
+
+### SearchAuctionsRequest
+SearchAuctionsRequest はヤフオクのキーワード検索リクエストです。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| query | [string](#string) |  | query は検索キーワードです。 |
+| page | [int64](#int64) |  | page はページ番号です（0始まり）。 |
+
+
+
+
+
+
+<a name="yahoo_auction-v1-SearchAuctionsResponse"></a>
+
+### SearchAuctionsResponse
+SearchAuctionsResponse はヤフオクの検索結果を返すレスポンスです。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| items | [SearchAuctionsResponse.Item](#yahoo_auction-v1-SearchAuctionsResponse-Item) | repeated | items は商品のリストです（新着順）。 |
+| total_count | [int64](#int64) |  | total_count は商品の総数です。 |
+
+
+
+
+
+
+<a name="yahoo_auction-v1-SearchAuctionsResponse-Item"></a>
+
+### SearchAuctionsResponse.Item
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| auction_id | [string](#string) |  | auction_id はヤフオクのオークションIDです。 |
+| title | [string](#string) |  | title は商品のタイトル（商品名）です。 |
+| current_price | [int64](#int64) |  | current_price は現在価格（単位は通常「円」）。 |
+| immediate_price | [int64](#int64) |  | 即決価格 |
+| image | [string](#string) |  | image は商品のサムネイル画像URLです。 |
+| bid_count | [int64](#int64) |  | 入札数 |
+
+
+
+
+
  
 
 
@@ -293,6 +530,7 @@ AuctionService はヤフオクのオークション情報を取得するサー�
 | ----------- | ------------ | ------------- | ------------|
 | GetAuction | [GetAuctionRequest](#yahoo_auction-v1-GetAuctionRequest) | [GetAuctionResponse](#yahoo_auction-v1-GetAuctionResponse) | GetAuction はヤフオクのオークションIDから商品情報を取得します。 |
 | GetCategoryItems | [GetCategoryItemsRequest](#yahoo_auction-v1-GetCategoryItemsRequest) | [GetCategoryItemsResponse](#yahoo_auction-v1-GetCategoryItemsResponse) | GetCategoryItems はヤフオクのカテゴリIDから商品情報を取得します。 |
+| SearchAuctions | [SearchAuctionsRequest](#yahoo_auction-v1-SearchAuctionsRequest) | [SearchAuctionsResponse](#yahoo_auction-v1-SearchAuctionsResponse) | SearchAuctions はヤフオクのキーワード検索で商品一覧を取得します（新着順）。 |
 
  
 
